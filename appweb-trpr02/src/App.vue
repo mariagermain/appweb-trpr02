@@ -1,21 +1,20 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
 </script>
 
 <template>
   <header>
-    <div>
-      <h1>TITRE DU JEU</h1>
-      <nav>
-        <RouterLink to="/">Accueil</RouterLink>
-        <RouterLink to="/score">Score</RouterLink>
-      </nav>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <h1 class="navbar-brand">TITRE DU JEU</h1>
+        <RouterLink class="btn" to="/">Accueil</RouterLink>
+        <RouterLink class="btn" to="/score">Score</RouterLink>
+    </nav>
   </header>
 
   <RouterView />
 </template>
 
 <style scoped>
-
 </style>
