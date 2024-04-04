@@ -12,7 +12,6 @@ import "bootstrap"
         <RouterLink class="btn" to="/score">Score</RouterLink>
     </nav>
   </header>
-
   <RouterView />
 </template>
 

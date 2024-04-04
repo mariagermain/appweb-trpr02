@@ -9,12 +9,15 @@
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",
-    "type-check": "vue-tsc --build --force"
+    "type-check": "vue-tsc --build --force",
+    "backend": "json-server --watch ./backend/db.default.json"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "botstrap": "^0.20.1",
+    "json-server": "^1.0.0-alpha.23",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
