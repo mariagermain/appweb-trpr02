@@ -6,7 +6,7 @@ import "bootstrap"
 
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light container-md">
         <h1 class="navbar-brand">TITRE DU JEU</h1>
         <RouterLink class="btn" to="/">Accueil</RouterLink>
         <RouterLink class="btn" to="/score">Score</RouterLink>
