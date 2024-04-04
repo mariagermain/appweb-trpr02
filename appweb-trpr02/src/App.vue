@@ -2,6 +2,12 @@
 import { RouterLink, RouterView } from 'vue-router'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
+
+export type Ship = {
+    id: string
+    name: string
+}
+
 </script>
 
 <template>
