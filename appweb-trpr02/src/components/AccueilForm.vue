@@ -29,7 +29,7 @@ shipsData.forEach((element: { id: string; name: string;}) => {
 </script>
 
 <template>
-    <form class>
+    <form class="form-group">
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Votre nom" aria-label="Username" aria-describedby="basic-addon1">
         </div>
@@ -39,7 +39,7 @@ shipsData.forEach((element: { id: string; name: string;}) => {
                 <option selected>choisissez...</option>
                 <option v-for="ship in ships" :key="ship.id">{{ ship.name }}</option>
             </select>
-  </div>
+        </div>
     </form>
 </template>
 
