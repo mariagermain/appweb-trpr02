@@ -15,7 +15,7 @@ let scoresData = await getScores().catch(()=>{
 });
 
 async function getScores(){
-    const { data }:AxiosResponse<any,any> = await axios.get(API_SCORE_URL);
+    const { data } : AxiosResponse<any,any> = await axios.get(API_SCORE_URL);
     return data;
 }
 

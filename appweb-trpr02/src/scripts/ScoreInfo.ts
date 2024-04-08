@@ -1,17 +1,17 @@
 export class ScoreInfo{
-    playerName:string;
-    score:number;
+    playerName : string;
+    score : number;
 
-    constructor(playerName:string, score:number){
+    constructor(playerName : string, score : number){
         this.playerName = playerName;
         this.score = score;
     }
 
-    getPlayerName(){
+    getPlayerName() : string{
         return this.playerName;
     }
 
-    getScore(){
+    getScore() :  number{
         return this.score;
     }
 }
