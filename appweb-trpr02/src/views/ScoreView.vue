@@ -12,7 +12,8 @@ import { ref } from 'vue';
 </script>
 
 <template>
-    <h1>Score</h1>
+    <h1 class="text-center">Pointage</h1>
+    <hr  class="devider">
     <ErrorMsg :show="showLoadingError" message="Impossible de contacter l'API."></ErrorMsg>
     <suspense>
         <ScoreTable @loading-error="loadingError()"></ScoreTable> 
