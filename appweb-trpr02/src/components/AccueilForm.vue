@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Ship } from "@/scripts/Types";
+import type { Ship } from "../scripts/Types";
 import AppService from "../../AppService"
 import { useRouter, type Router } from "vue-router";
 
@@ -9,8 +9,7 @@ const emit = defineEmits(['loading-error']);
 const APP_SERVICE : AppService = new AppService();
 let ROUTER : Router = useRouter();
 
-let ships : Ship[] = [];
-ships = await APP_SERVICE.getShips().catch(() => {
+let ships : Ship[] = await APP_SERVICE.getShips().catch(() => {
     emit('loading-error');
 }).then(it => it || []);
 
