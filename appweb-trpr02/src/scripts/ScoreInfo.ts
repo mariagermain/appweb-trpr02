@@ -9,6 +9,7 @@ export class ScoreInfo{
         this.score = score;
     }
 
+<<<<<<< HEAD
     getPosition(){
         return this.position;
     }
@@ -18,11 +19,11 @@ export class ScoreInfo{
         this.position = position;
     }
 
-    getPlayerName(){
+    getPlayerName():string{
         return this.playerName;
     }
 
-    getScore(){
+    getScore() :  number{
         return this.score;
     }
 }

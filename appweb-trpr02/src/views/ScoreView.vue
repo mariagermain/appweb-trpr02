@@ -4,11 +4,12 @@ import ScoreTable from './../components/ScoreTable.vue'
 import ErrorMsg from './../components/ErrorMsg.vue'
 import { ref } from 'vue';
 
-    let showLoadingError = ref(false);
-    function loadingError(){
-        showLoadingError.value = true;
-        console.log("OUPS")
-    }
+let showLoadingError = ref(false);
+
+function loadingError(){
+    showLoadingError.value = true;
+    console.log("OUPS")
+}
 </script>
 
 <template>
