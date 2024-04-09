@@ -1,6 +1,8 @@
 # Revue du code de Théo
 
-## Utilisation de types
+## Semaine 1
+
+### Utilisation de types
 
 Très pertinent puisqu'on récupère les données directement à partir d'un service.
 
@@ -17,14 +19,14 @@ export type Ship = {
 }
 ````
 
-## ATTENTION avec les console.log dans le code
+### ATTENTION avec les console.log dans le code
 ````ts
 function loadingError(){
     showLoadingError.value = true;
     console.log("OUPS")
 }
 ````
-## Bonne utilisation des types, mais quelques oublis à faire attention!
+### Bonne utilisation des types, mais quelques oublis à faire attention!
 
 ::: warning
 ````ts
@@ -37,5 +39,10 @@ const APP_SERVICE = new AppService();
 const APP_SERVICE : AppService = new AppService();
 ````
 :::
+
+## Semaine 2
+
+## Semaine 3
+
 
 

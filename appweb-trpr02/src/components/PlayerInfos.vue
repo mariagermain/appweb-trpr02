@@ -9,11 +9,11 @@ defineProps({
 </script>
 
 <template>
-    <div class="container rounded border-2 border">
-        <span class="p-2">{{ playerName }}</span>
-        <span class="row">
+    <div class="container bg-dark rounded border-2 border">
+        <div class="p-2 bg-primary">{{ playerName }}</div>
+        <div class="row">
 
-        </span>
+        </div>
     </div>
 </template>
 
