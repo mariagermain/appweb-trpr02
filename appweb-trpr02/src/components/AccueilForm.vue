@@ -22,7 +22,7 @@ let ships : void | Ship[] = await APP_SERVICE.getShips().catch(()=>{
         <div class="form-group pb-3">
             <label for="select-ship">Vaisseau:</label>
             <select class="form-select" id="select-ship">
-                <option v-for="ship in ships" :key="ship.getid()">{{ ship.getName() }}</option>
+                <option v-for="ship in ships" :key="ship.id">{{ ship.name }}</option>
             </select>
         </div>
         <div class="">
