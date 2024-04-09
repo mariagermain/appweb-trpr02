@@ -1,7 +1,7 @@
 export class ScoreInfo{
-    position:number;
-    playerName:string;
-    score:number;
+    private position:number;
+    private playerName:string;
+    private score:number;
 
     constructor(position:number,playerName:string, score:number){
         this.position = position;
@@ -9,7 +9,6 @@ export class ScoreInfo{
         this.score = score;
     }
 
-<<<<<<< HEAD
     getPosition(){
         return this.position;
     }
