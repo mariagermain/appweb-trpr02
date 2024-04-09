@@ -2,48 +2,17 @@
 outline: deep
 ---
 
-# Runtime API Examples
+# Revue du code de Maria.
 
-This page demonstrates usage of some of the runtime APIs provided by VitePress.
+## Semaine 1 :
+### Manque de tests : 
+penser à ajouter les tests pour les composants.
 
-The main `useData()` API can be used to access site, theme, and page data for the current page. It works in both `.md` and `.vue` files:
+### Vérification du nom du joueur (*AccueilForm.vue*)
+Peut-être ajouter une fonction pour vérifier que le nom du joueur est valide avant de changer de page.
+````html
+ <button type="button" @click="ROUTER.push({ name : 'game'})" class="btn btn-primary w-100">Débuter la partie</button>
+````
 
-```md
-<script setup>
-import { useData } from 'vitepress'
-
-const { theme, page, frontmatter } = useData()
-</script>
-
-## Results
-
-### Theme Data
-<pre>{{ theme }}</pre>
-
-### Page Data
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-<pre>{{ frontmatter }}</pre>
-```
-
-<script setup>
-import { useData } from 'vitepress'
-
-const { site, theme, page, frontmatter } = useData()
-</script>
-
-## Results
-
-### Theme Data
-<pre>{{ theme }}</pre>
-
-### Page Data
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-<pre>{{ frontmatter }}</pre>
-
-## More
-
-Check out the documentation for the [full list of runtime APIs](https://vitepress.dev/reference/runtime-api#usedata).
+### *AppService.ts*
+Très bonne idée, ça rend le code beaucoup plus lisible.
