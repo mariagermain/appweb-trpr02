@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { Ship } from "../scripts/Ship"
 import AppService from "../../AppService"
+import { useRouter } from "vue-router";
 
 const emit = defineEmits(['loading-error']);
 
 // Chargement de l'API
 const APP_SERVICE = new AppService();
+let ROUTER = useRouter();
 
 let ships : void | Ship[] = await APP_SERVICE.getShips().catch(()=>{
     emit('loading-error');
@@ -26,7 +28,7 @@ let ships : void | Ship[] = await APP_SERVICE.getShips().catch(()=>{
             </select>
         </div>
         <div class="">
-            <button type="button" class="btn btn-primary w-100">Débuter la partie</button>
+            <button type="button" @click="ROUTER.push({ name : 'game'})" class="btn btn-primary w-100">Débuter la partie</button>
         </div>
     </form>
 </template>
