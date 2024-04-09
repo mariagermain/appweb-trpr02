@@ -18,7 +18,7 @@ export default class AppService {
     }
 
     async getScores() : Promise<ScoreInfo[]>{
-        const { data } : AxiosResponse<ScoreInfo[],any> = await axios.get(this.API_URL + SCORES_PATH);
+        const { data } : AxiosResponse<ScoreInfo[], ScoreInfo[]> = await axios.get(this.API_URL + SCORES_PATH);
         return data;
     }
 
