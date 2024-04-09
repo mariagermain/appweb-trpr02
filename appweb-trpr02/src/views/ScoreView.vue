@@ -8,7 +8,6 @@ let showLoadingError = ref(false);
 
 function loadingError(){
     showLoadingError.value = true;
-    console.log("OUPS")
 }
 </script>
 
