@@ -2,8 +2,8 @@ import axios, { type AxiosResponse } from 'axios';
 import { type Ship, type ScoreInfo } from "./src/scripts/Types"
 
 
-const SHIPS_PATH = "/ships"
-const SCORES_PATH = "/ranking"
+const SHIPS_PATH : string = "/ships"
+const SCORES_PATH : string = "/ranking"
 
 export default class AppService {
     API_URL: string

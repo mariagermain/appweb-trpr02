@@ -7,14 +7,14 @@ import PlayerInfos from '../components/PlayerInfos.vue'
 </script>
 
 <template>
-    <div class="container">
+    <div class="container w-100">
         <div class="row">
-            <Actions/>
-            <Missions/>
+            <Actions class="col m-3"/>
+            <Missions class="col m-3"/>
         </div>
         <div class="row">
-            <PlayerInfos/>
-            <PlayerInfos/>
+            <PlayerInfos class="col m-3"/>
+            <PlayerInfos class="col m-3"/>
         </div>
     </div>
 </template>

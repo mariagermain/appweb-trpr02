@@ -2,15 +2,15 @@
 import { ref } from 'vue';
 
 defineProps({
-    name:String,
+    playerName:String,
     shipName:String
 })
 
 </script>
 
 <template>
-    <div class="container">
-        <span class="p-2">{{ name }}</span>
+    <div class="container rounded border-2 border">
+        <span class="p-2">{{ playerName }}</span>
         <span class="row">
 
         </span>
