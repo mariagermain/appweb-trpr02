@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { type Ship } from "../scripts/Types"
 import AppService from "../../AppService"
-import { useRouter } from "vue-router";
+import { useRouter, type Router } from "vue-router";
 
 const emit = defineEmits(['loading-error']);
 
 // Chargement de l'API
-const APP_SERVICE = new AppService();
-let ROUTER = useRouter();
+const APP_SERVICE : AppService = new AppService();
+let ROUTER : Router = useRouter();
 
-let ships : void | Ship[] = await APP_SERVICE.getShips().catch(()=>{
+let ships : Ship[] = [];
+ships = await APP_SERVICE.getShips().catch(() => {
     emit('loading-error');
-});
+}).then(it => it || []);
 
 
 </script>
