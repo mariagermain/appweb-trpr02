@@ -1,36 +1,43 @@
-# Markdown Extension Examples
+# Revue du code de Théo
 
-This page demonstrates some of the built-in markdown extensions provided by VitePress.
+## Utilisation de types
 
-## Syntax Highlighting
+Très pertinent puisqu'on récupère les données directement à partir d'un service.
 
-VitePress provides Syntax Highlighting powered by [Shiki](https://github.com/shikijs/shiki), with additional features like line-highlighting:
-
-**Input**
-
-````md
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
-  }
+````ts
+export type ScoreInfo = {
+    id:number,
+    name:string,
+    score:number
 }
-```
+
+export type Ship = {
+    id:string,
+    name:string
+}
 ````
 
-**Output**
-
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
-  }
+## ATTENTION avec les console.log dans le code
+````ts
+function loadingError(){
+    showLoadingError.value = true;
+    console.log("OUPS")
 }
-```
+````
+## Bonne utilisation des types, mais quelques oublis à faire attention!
+
+::: warning
+````ts
+const APP_SERVICE = new AppService();
+````
+:::
+
+::: tip
+````ts
+const APP_SERVICE : AppService = new AppService();
+````
+:::
+
 
 ## Custom Containers
 

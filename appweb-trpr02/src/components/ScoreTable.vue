@@ -1,13 +1,11 @@
 <script setup lang = "ts">
-import axios, { type AxiosResponse } from 'axios';
 import { type ScoreInfo } from '@/scripts/Types';
 import AppService from '../../AppService';
 
 const emit = defineEmits(['loading-error']);
 
 // Chargement de l'API
-const API_SCORE_URL = "http://127.0.0.1:3000/ranking"
-const APP_SERVICE = new AppService();
+const APP_SERVICE : AppService = new AppService();
 
 let scoreInfos:ScoreInfo[] = await APP_SERVICE.getScores().catch(()=>{
     emit('loading-error');
