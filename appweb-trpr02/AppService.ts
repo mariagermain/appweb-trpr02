@@ -1,10 +1,9 @@
 import axios, { type AxiosResponse } from 'axios';
-import { Ship } from "./src/scripts/Ship"
-import { ScoreInfo } from "./src/scripts/ScoreInfo"
+import { type Ship, type ScoreInfo } from "./src/scripts/Types"
 
 
 const SHIPS_PATH = "/ships"
-const SCORES_PATH = "/scores"
+const SCORES_PATH = "/ranking"
 
 export default class AppService {
     API_URL: string

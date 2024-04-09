@@ -1,29 +1,17 @@
 <script setup lang = "ts">
 import axios, { type AxiosResponse } from 'axios';
-import { ScoreInfo } from '@/scripts/ScoreInfo';
+import { type ScoreInfo } from '@/scripts/Types';
+import AppService from '../../AppService';
 
 const emit = defineEmits(['loading-error']);
 
 // Chargement de l'API
 const API_SCORE_URL = "http://127.0.0.1:3000/ranking"
+const APP_SERVICE = new AppService();
 
-let scoresData = await getScores().catch(()=>{
-    console.log("ERREUR API");
+let scoreInfos:void|any[] = await APP_SERVICE.getScores().catch(()=>{
     emit('loading-error');
 });
-
-async function getScores(){
-    const { data } : AxiosResponse<any,any> = await axios.get(API_SCORE_URL);
-    return data;
-}
-
-// Création des objet ScoreInfo
-let scoreInfos:ScoreInfo[] = [];
-
-for (let i:number = 0; i < scoresData.length; i++){
-    scoreInfos.push(new ScoreInfo(0,scoresData[i]['name'], scoresData[i]['score']));
-}
-
 sortScores();
 
 // Pour trier le score des joueurs (le premier se retrouve en haut, etc..)
@@ -33,7 +21,7 @@ function sortScores(){
     while (!isSorted){
         isSorted = true;
         for(let i = 0; i < scoreInfos.length-1; i ++){
-            if (scoreInfos[i].getScore() < scoreInfos[i+1].getScore()){
+            if (scoreInfos[i]['score'] < scoreInfos[i+1]['score']){
                 let temp = scoreInfos[i];
                 scoreInfos[i] = scoreInfos [i+1];
                 scoreInfos[i+1] = temp;
@@ -42,7 +30,7 @@ function sortScores(){
         }
     }
     for (let i = 0; i<scoreInfos.length; i ++){
-        scoreInfos[i].setPosition(i+1);
+        scoreInfos[i]['id'] = i+1;
     }
 }
 </script>
@@ -59,9 +47,9 @@ function sortScores(){
             </thead>
             <tbody>
                 <tr v-for="scoreInfo of scoreInfos">
-                <td> {{ scoreInfo.getPosition() }} </td>
-                <td>{{ scoreInfo.getPlayerName() }}</td>
-                <td>{{ scoreInfo.getScore() }}</td>
+                <td> {{ scoreInfo['id'] }} </td>
+                <td>{{ scoreInfo['name']}}</td>
+                <td>{{ scoreInfo['score'] }}</td>
             </tr>
             </tbody>
 
