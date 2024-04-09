@@ -23,6 +23,28 @@ let scoreInfos:ScoreInfo[] = [];
 for (let i:number = 0; i < scoresData.length; i++){
     scoreInfos.push(new ScoreInfo(0,scoresData[i]['name'], scoresData[i]['score']));
 }
+
+sortScores();
+
+// Pour trier le score des joueurs (le premier se retrouve en haut, etc..)
+function sortScores(){
+    let isSorted = false;
+
+    while (!isSorted){
+        isSorted = true;
+        for(let i = 0; i < scoreInfos.length-1; i ++){
+            if (scoreInfos[i].getScore() < scoreInfos[i+1].getScore()){
+                let temp = scoreInfos[i];
+                scoreInfos[i] = scoreInfos [i+1];
+                scoreInfos[i+1] = temp;
+                isSorted = false;
+            }
+        }
+    }
+    for (let i = 0; i<scoreInfos.length; i ++){
+        scoreInfos[i].setPosition(i+1);
+    }
+}
 </script>
 
 <template>
@@ -37,7 +59,7 @@ for (let i:number = 0; i < scoresData.length; i++){
             </thead>
             <tbody>
                 <tr v-for="scoreInfo of scoreInfos">
-                <td> 1 </td>
+                <td> {{ scoreInfo.getPosition() }} </td>
                 <td>{{ scoreInfo.getPlayerName() }}</td>
                 <td>{{ scoreInfo.getScore() }}</td>
             </tr>
