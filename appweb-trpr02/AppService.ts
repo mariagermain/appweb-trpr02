@@ -1,10 +1,5 @@
 import axios, { type AxiosResponse } from 'axios';
-<<<<<<< Updated upstream
 import { type Ship, type ScoreInfo } from "./src/scripts/Types"
-=======
-import { type Ship } from "./src/scripts/Ship"
-import { ScoreInfo } from "./src/scripts/ScoreInfo"
->>>>>>> Stashed changes
 
 
 const SHIPS_PATH = "/ships"
@@ -18,7 +13,7 @@ export default class AppService {
     }
 
     async getShips () : Promise<Ship[]> {
-        const { data } : AxiosResponse<Ship[], undefined> = await axios.get(this.API_URL + SHIPS_PATH);
+        const { data } : AxiosResponse<Ship[], Ship[]> = await axios.get(this.API_URL + SHIPS_PATH);
         return data;
     }
 

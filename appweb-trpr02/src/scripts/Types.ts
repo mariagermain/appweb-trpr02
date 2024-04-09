@@ -6,5 +6,5 @@ export type ScoreInfo = {
 
 export type Ship = {
     id:string,
-    nom:string
+    name:string
 }

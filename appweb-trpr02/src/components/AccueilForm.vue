@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Ship } from "../scripts/Ship"
+import type { Ship } from "@/scripts/Types";
 import AppService from "../../AppService"
 import { useRouter, type Router } from "vue-router";
 
