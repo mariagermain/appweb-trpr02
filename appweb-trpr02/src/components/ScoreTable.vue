@@ -9,9 +9,10 @@ const emit = defineEmits(['loading-error']);
 const API_SCORE_URL = "http://127.0.0.1:3000/ranking"
 const APP_SERVICE = new AppService();
 
-let scoreInfos:void|any[] = await APP_SERVICE.getScores().catch(()=>{
+let scoreInfos:ScoreInfo[] = await APP_SERVICE.getScores().catch(()=>{
     emit('loading-error');
-});
+}).then(it => it || []);
+
 sortScores();
 
 // Pour trier le score des joueurs (le premier se retrouve en haut, etc..)

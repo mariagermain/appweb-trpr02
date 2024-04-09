@@ -1,10 +1,10 @@
 export type ScoreInfo = {
-    position:number,
-    playerName:string,
+    id:number,
+    name:string,
     score:number
 }
 
 export type Ship = {
     id:string,
-    nom:string
+    name:string
 }

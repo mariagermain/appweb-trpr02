@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Ship } from "../scripts/Ship"
+import { type Ship } from "../scripts/Types"
 import AppService from "../../AppService"
 import { useRouter } from "vue-router";
 
@@ -24,7 +24,7 @@ let ships : void | Ship[] = await APP_SERVICE.getShips().catch(()=>{
         <div class="form-group pb-3">
             <label for="select-ship">Vaisseau:</label>
             <select class="form-select" id="select-ship">
-                <option v-for="ship in ships" :key="ship.id">{{ ship.name }}</option>
+                <option v-for="ship in ships" :key="ship.id">{{ ship['name'] }}</option>
             </select>
         </div>
         <div class="">
