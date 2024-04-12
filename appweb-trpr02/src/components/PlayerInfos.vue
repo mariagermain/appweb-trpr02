@@ -14,6 +14,14 @@ defineProps({
         <div class="row">
 
         </div>
+        <div>
+            {{ shipName }}
+        </div>
+        <div class="w-100 border border-1 border-light mt-1 mb-1">
+            <div class="p-1">
+                    
+            </div>
+        </div>
     </div>
 </template>
 
