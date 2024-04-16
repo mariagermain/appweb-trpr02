@@ -26,7 +26,7 @@ function submitForm(playerName : string, ship : Ship){
     <h3>Votre objectif: survivre à 5 missions en obtenant le plus de crédits galactiques</h3>
     <ErrorMsg :show="showLoadingError" message="Impossible de contacter l'API."></ErrorMsg>
     <suspense>
-        <AccueilForm @loading-error="loadingError()" @submit-form="submitForm(playerName, ship)"/>
+        <AccueilForm @loading-error="loadingError()" @submit-form="submitForm"/>
     </suspense>
 </template>
 
