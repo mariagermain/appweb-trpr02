@@ -2,8 +2,8 @@
 import { ref } from 'vue';
 
 defineProps({
-    playerName:String,
-    shipName:String
+    playerName: String,
+    shipName: String
 })
 
 </script>

@@ -8,3 +8,8 @@ export type Ship = {
     id:string,
     name:string
 }
+
+export type Player = {
+    id:string,
+    name:string
+}
