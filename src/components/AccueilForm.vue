@@ -7,7 +7,7 @@ import { ref, type Ref } from "vue";
 const emit = defineEmits(['loading-error', 'submit-form']);
 
 let playerName : string;
-let selectedShip : Ship;
+let selectedShip : Ship = {id:'1', name:'we'};
 
 // Chargement de l'API
 const APP_SERVICE : AppService = new AppService();
@@ -27,7 +27,7 @@ let ships : Ship[] = await APP_SERVICE.getShips().catch(() => {
         <div class="form-group pb-3">
             <label for="select-ship">Vaisseau:</label>
             <select class="form-select" id="select-ship" v-model="selectedShip">
-                <option v-for="ship in ships" :key="ship.id" >{{ ship.name }}</option>
+                <option v-for="ship in ships" :key="ship.id" v-bind:value="{ id: ship.id, name: ship.name }">{{ ship.name }}</option>
             </select>
         </div>
         <div class="">
