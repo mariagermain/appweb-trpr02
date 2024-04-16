@@ -3,21 +3,21 @@ import { ref, type Ref } from 'vue';
 import AccueilForm from '../components/AccueilForm.vue'
 import ErrorMsg from '../components/ErrorMsg.vue'
 import { useRouter, type Router } from 'vue-router';
-import type { Ship } from '@/scripts/Types';
+import type { Ship, Player } from '@/scripts/Types';
 
 let ROUTER : Router = useRouter();
 
 let showLoadingError = ref(false);
 
-let playerName : Ref<string>= ref("");
-let ship : Ref<Ship>;
+let playerName: Ref<string> = ref("");
+let ship: Ref<Ship>;
 
 function loadingError(){
     showLoadingError.value = true;
 }
 
-function submitForm(playerName : string, ship : Ship){
-    ROUTER.push({ name : 'game', params : { playerName : "", shipName : ""}});
+function submitForm(playerName : String, ship : Ship){
+    ROUTER.push({ name : 'game', params : { playerName : playerName, ship : ship}});
 }
 
 </script>

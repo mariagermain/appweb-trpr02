@@ -3,6 +3,12 @@ import { ref } from 'vue';
 import Actions from '../components/Actions.vue'
 import Missions from '../components/Missions.vue'
 import PlayerInfos from '../components/PlayerInfos.vue'
+import type { Ship } from '@/scripts/Types';
+
+defineProps<{
+    playerName: string,
+    ship: Ship,
+}>()
 
 </script>
 
@@ -13,8 +19,8 @@ import PlayerInfos from '../components/PlayerInfos.vue'
             <Missions class="col m-3"/>
         </div>
         <div class="row">
-            <PlayerInfos class="col m-3"/>
-            <PlayerInfos class="col m-3"/>
+            <PlayerInfos :playerName=playerName :shipName=ship.name class="col m-3"/>
+            <PlayerInfos :playerName="'fv'" :shipName="''" class="col m-3"/>
         </div>
     </div>
 </template>
