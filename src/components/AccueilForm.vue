@@ -7,7 +7,7 @@ import { ref, type Ref } from "vue";
 const emit = defineEmits(['loading-error', 'submit-form']);
 
 let playerName : string;
-let selectedShip : Ship = {id:'1', name:'we'};
+let selectedShip : Ship;
 
 // Chargement de l'API
 const APP_SERVICE : AppService = new AppService();
@@ -31,7 +31,7 @@ let ships : Ship[] = await APP_SERVICE.getShips().catch(() => {
             </select>
         </div>
         <div class="">
-            <button type="button" @click="emit('submit-form',playerName, selectedShip )" class="btn btn-primary w-100">Débuter la partie</button>
+            <button v-if="(playerName != '' || undefined) && (selectedShip != null || undefined)"type="button" @click="emit('submit-form',playerName, selectedShip )" class="btn btn-primary w-100">Débuter la partie</button>
         </div>
     </form>
 </template>
