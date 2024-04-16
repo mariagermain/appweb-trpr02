@@ -17,6 +17,7 @@ function loadingError(){
 }
 
 function submitForm(playerName : string, ship : Ship){
+    console.log(ship.name)
     ROUTER.push({ name : 'game', params : { playerName : playerName, shipName : ship.name}});
 }
 

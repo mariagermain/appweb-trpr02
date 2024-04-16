@@ -31,7 +31,7 @@ let ships : Ship[] = await APP_SERVICE.getShips().catch(() => {
             </select>
         </div>
         <div class="">
-            <button type="button" @click="emit('submit-form', playerName, selectedShip)" class="btn btn-primary w-100">Débuter la partie</button>
+            <button type="button" @click="emit('submit-form',playerName, selectedShip )" class="btn btn-primary w-100">Débuter la partie</button>
         </div>
     </form>
 </template>
