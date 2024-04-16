@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-defineProps({
-    playerName: String,
-    shipName: String
-})
+defineProps<{
+    playerName: string,
+    shipName: string
+}>()
 
 </script>
 

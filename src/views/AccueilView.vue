@@ -16,8 +16,8 @@ function loadingError(){
     showLoadingError.value = true;
 }
 
-function submitForm(player : Player, ship : Ship){
-    ROUTER.push({ name : 'game', params : { playerName : playerName.value, ship : ship.name}});
+function submitForm(playerName : String, ship : Ship){
+    ROUTER.push({ name : 'game', params : { playerName : playerName, ship : ship}});
 }
 
 </script>
@@ -26,7 +26,7 @@ function submitForm(player : Player, ship : Ship){
     <h3>Votre objectif: survivre à 5 missions en obtenant le plus de crédits galactiques</h3>
     <ErrorMsg :show="showLoadingError" message="Impossible de contacter l'API."></ErrorMsg>
     <suspense>
-        <AccueilForm @loading-error="loadingError()" @submit-form="submitForm(playerName.value, ship)"/>
+        <AccueilForm @loading-error="loadingError()" @submit-form="submitForm(playerName, ship)"/>
     </suspense>
 </template>
 
