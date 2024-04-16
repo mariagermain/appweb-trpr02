@@ -6,7 +6,7 @@ import { ref, type Ref } from "vue";
 
 const emit = defineEmits(['loading-error', 'submit-form']);
 
-let playerName : Ref<string> = ref("");
+let playerName : string;
 let selectedShip : Ship;
 
 // Chargement de l'API

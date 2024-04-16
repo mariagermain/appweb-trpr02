@@ -7,7 +7,7 @@ import type { Ship } from '@/scripts/Types';
 
 defineProps<{
     playerName: string,
-    ship: Ship,
+    shipName: string,
 }>()
 
 </script>
@@ -19,8 +19,8 @@ defineProps<{
             <Missions class="col m-3"/>
         </div>
         <div class="row">
-            <PlayerInfos :playerName=playerName :shipName=ship.name class="col m-3"/>
-            <PlayerInfos :playerName="'fv'" :shipName="''" class="col m-3"/>
+            <PlayerInfos :playerName="playerName" :shipName="shipName" class="col m-3"/>
+            <PlayerInfos :playerName="'fv'" :shipName="'grrrrrrrrrrrrrr'" class="col m-3"/>
         </div>
     </div>
 </template>
