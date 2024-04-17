@@ -6,8 +6,8 @@ import { ref, type Ref } from "vue";
 
 const emit = defineEmits(['loading-error', 'submit-form']);
 
-let playerName : string;
-let selectedShip : Ship;
+let playerName : Ref<string>;
+let selectedShip : Ref<Ship>;
 
 // Chargement de l'API
 const APP_SERVICE : AppService = new AppService();
@@ -17,21 +17,22 @@ let ships : Ship[] = await APP_SERVICE.getShips().catch(() => {
 }).then(it => it || []);
 
 
+
 </script>
 
 <template>
     <form class="form-outline w-50 mx-auto border border-secondary rounded p-3">
         <div class="form-group pb-3">
-            <input v-model=playerName type="text" class="form-control" placeholder="Votre nom" aria-label="Username" aria-describedby="basic-addon1">
+            <input v-model="playerName" type="text" class="form-control" placeholder="Votre nom" aria-label="Username" aria-describedby="basic-addon1">
         </div>
         <div class="form-group pb-3">
             <label for="select-ship">Vaisseau:</label>
             <select class="form-select" id="select-ship" v-model="selectedShip">
-                <option v-for="ship in ships" :key="ship.id" v-bind:value="{ id: ship.id, name: ship.name }">{{ ship.name }}</option>
+                <option v-for="ship in ships"   :key="ship.id" v-bind:value="{ id: ship.id, name: ship.name }">{{ ship.name }}</option>
             </select>
         </div>
         <div class="">
-            <button v-if="(playerName != '' || undefined) && (selectedShip != null || undefined)"type="button" @click="emit('submit-form',playerName, selectedShip )" class="btn btn-primary w-100">Débuter la partie</button>
+            <button type="button" @click="emit('submit-form',playerName, selectedShip )" class="btn btn-primary w-100">Débuter la partie</button>
         </div>
     </form>
 </template>

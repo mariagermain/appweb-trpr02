@@ -6,8 +6,8 @@ import PlayerInfos from '../components/PlayerInfos.vue'
 import type { Ship } from '@/scripts/Types';
 
 defineProps<{
-    playerName: string,
-    shipName: string,
+    playerName:string,
+    shipName:string
 }>()
 
 </script>
