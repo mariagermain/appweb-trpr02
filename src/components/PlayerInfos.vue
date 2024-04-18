@@ -9,7 +9,7 @@ const props = defineProps<{
 </script>
 
 <template>
-    <div class="container bg-dark rounded border-2 border">
+    <div class="container bg-dark text-white rounded border-2 border">
         <div class="p-2 bg-primary">{{ props.playerName }}</div>
         <div class="row">
 
