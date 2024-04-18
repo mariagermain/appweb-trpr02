@@ -3,11 +3,6 @@ import { RouterLink, RouterView } from 'vue-router'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 
-export type Ship = {
-    id: string
-    name: string
-}
-
 </script>
 
 <template>
@@ -18,7 +13,7 @@ export type Ship = {
         <RouterLink class="btn" to="/score">Score</RouterLink>
     </nav>
   </header>
-  <RouterView />
+  <Suspense><RouterView/></Suspense>
 </template>
 
 <style scoped>
