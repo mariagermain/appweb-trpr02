@@ -1,10 +1,18 @@
-import { rest } from 'msw'
 import { ships } from '../data/ships'
+import { rest } from 'msw'
+
 
 const API_URL:string = 'http://localhost:3000';
 
 export const getShips = [
-    rest.get(`${API_URL}/ships/*`, (req, res, ctx) => {
+    rest.get('http://localhost:3000/ships', (req, res, ctx) => {
         return res(ctx.status(200), ctx.json(ships))
       }),
 ]
+
+export const networkError = [
+  rest.get(`${API_URL}/*`, (req, res, ctx) => {
+    return res.networkError('Handler : Failed to connect')
+  }),
+]
+
