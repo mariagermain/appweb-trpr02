@@ -22,7 +22,9 @@
     "botstrap": "^0.20.1",
     "json-server": "^1.0.0-alpha.23",
     "vue": "^3.4.21",
+    "msw": "^1.0.1",
     "vue-router": "^4.3.0"
+    
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.2",
@@ -38,5 +40,10 @@
     "vitepress": "^1.1.0",
     "vitest": "^1.4.0",
     "vue-tsc": "^2.0.6"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
