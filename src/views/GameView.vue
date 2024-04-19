@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUpdated, ref, type ComputedRef, type Ref } from 'vue';
+import { onMounted, onUpdated, ref, type Ref } from 'vue';
 import Actions from '../components/Actions.vue'
 import Missions from '../components/Missions.vue'
 import PlayerInfos from '../components/PlayerInfos.vue'
@@ -10,22 +10,20 @@ const props = defineProps<{
     playerName:string,
     shipName:string
 }>()
+
 const APP_SERVICE : AppService = new AppService();
-let characters : Character[] = await APP_SERVICE.getCharacters() 
-let opponent = computed({
-    get(){ return getRandomCharacter()},
-    set(value : Character){ opponent.value = value} 
-});
+//let nb : number = await APP_SERVICE.getNbCharacters()
+//console.log(nb)
+//NB_CHARACTERS.value = await APP_SERVICE.getNbCharacters();
 
+let opponent = ref(await APP_SERVICE.getRandomCharacter());
+let player : Player = {name:props.playerName, maxHealth:0, credit:0};
 
-let player : Player = {name:props.playerName, maxHealth:0, credit:0}
-
-function getRandomCharacter() : Character{
-    return characters[Math.random()*(characters.length + 1)]
-}
+/*async function getRandomCharacter() : Promise<Character> {
+    return APP_SERVICE.getCharacter();
+}*/
 
 console.log(opponent.value)
-
 </script>
 
 <template>
@@ -36,7 +34,7 @@ console.log(opponent.value)
         </div>
         <div class="row">
             <PlayerInfos :playerName="player.name" :shipName="shipName" class="col m-3"/>
-            <PlayerInfos :playerName="'fv'" :shipName="'grrrrrrrrrrrrrr'" class="col m-3"/>
+            <PlayerInfos :playerName="opponent.name" :shipName="opponent.ship.name" class="col m-3"/>
         </div>
     </div>
 </template>
