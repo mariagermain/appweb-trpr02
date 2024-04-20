@@ -3,21 +3,21 @@ import { ref, type Ref } from 'vue';
 import AccueilForm from '../components/AccueilForm.vue'
 import ErrorMsg from '../components/ErrorMsg.vue'
 import { useRouter, type Router } from 'vue-router';
-import type { Ship } from '@/scripts/Types';
+import type { Character, Ship } from '@/scripts/Types';
+import AppService from '../../AppService';
 
 let ROUTER : Router = useRouter();
+const APP_SERVICE : AppService = new AppService();
 
 let showLoadingError = ref(false);
-
-let playerName: Ref<string> = ref("");
-let ship: Ref<Ship>;
 
 function loadingError(){
     showLoadingError.value = true;
 }
 
-function submitForm(playerName : string, ship : Ship){
-    ROUTER.push({ name : 'game', params : {playerName:playerName, shipName:ship.name}});
+async function submitForm(playerName : string, ship : Ship){
+    let rand : number = Math.floor(Math.random() * await APP_SERVICE.getNbCharacters());
+    ROUTER.push({ name : 'game', params : {playerName:playerName, shipName:ship.name, randIndex:rand}});
 }
 
 </script>

@@ -29,10 +29,9 @@ export default class AppService {
         return data;
     }
 
-    async getRandomCharacter() : Promise<Character>{
+    async getCharacter(position : number) : Promise<Character>{
         const { data } : AxiosResponse<Character[], Character[]> = await axios.get("http://127.0.0.1:3000/characters");
-        const rand = Math.floor(Math.random() * await this.getNbCharacters());
-        return data[rand];
+        return data[position];
     }
 
     async getNbCharacters() : Promise<number> {

@@ -8,22 +8,15 @@ import AppService from '../../AppService';
 
 const props = defineProps<{
     playerName:string,
-    shipName:string
+    shipName:string,
+    randIndex:number
 }>()
 
 const APP_SERVICE : AppService = new AppService();
-//let nb : number = await APP_SERVICE.getNbCharacters()
-//console.log(nb)
-//NB_CHARACTERS.value = await APP_SERVICE.getNbCharacters();
 
-let opponent = ref(await APP_SERVICE.getRandomCharacter());
+let opponent = await APP_SERVICE.getCharacter(props.randIndex);
 let player : Player = {name:props.playerName, maxHealth:0, credit:0};
 
-/*async function getRandomCharacter() : Promise<Character> {
-    return APP_SERVICE.getCharacter();
-}*/
-
-console.log(opponent.value)
 </script>
 
 <template>
