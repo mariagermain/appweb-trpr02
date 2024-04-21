@@ -32,6 +32,7 @@ function sortScores(){
         scoreInfos[i]['id'] = i+1;
     }
 }
+
 </script>
 
 <template>

@@ -16,3 +16,21 @@ Peut-être ajouter une fonction pour vérifier que le nom du joueur est valide a
 
 ### *AppService.ts*
 Très bonne idée, ça rend le code beaucoup plus lisible.
+
+## Semaine 2
+### Manque de tests :
+je pense qu'il est urgent de commencer nos tests, je vais m'en occuper.
+
+### L'interface du jeu est très propre, beau travail.
+### Code très propre, rien à signaler.
+### Randindex dans les props ?
+
+````ts
+const props = defineProps<{
+    playerName:string,
+    shipName:string,
+    randIndex:number
+}>()
+````
+Si on passe l'index de l'enemie dans l'url, le joueur peut tricher et choisir son enemie en modifiant l'url.
+Je pense que la meilleur solution est de choisir l'url dans GameView.

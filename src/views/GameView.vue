@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, onUpdated, ref, type Ref } from 'vue';
 import Actions from '../components/Actions.vue'
 import Missions from '../components/Missions.vue'
 import PlayerInfos from '../components/PlayerInfos.vue'
-import type { Ship } from '@/scripts/Types';
+import type { Player, Character } from '@/scripts/Types';
+import AppService from '../../AppService';
 
-defineProps<{
-    playerName: string,
-    ship: Ship,
+const props = defineProps<{
+    playerName:string,
+    shipName:string,
+    randIndex:number
 }>()
+
+const APP_SERVICE : AppService = new AppService();
+
+let opponent = await APP_SERVICE.getCharacter(props.randIndex);
+let player : Player = {name:props.playerName, maxHealth:0, credit:0};
 
 </script>
 
@@ -19,8 +26,8 @@ defineProps<{
             <Missions class="col m-3"/>
         </div>
         <div class="row">
-            <PlayerInfos :playerName=playerName :shipName=ship.name class="col m-3"/>
-            <PlayerInfos :playerName="'fv'" :shipName="''" class="col m-3"/>
+            <PlayerInfos :playerName="player.name" :shipName="shipName" class="col m-3"/>
+            <PlayerInfos :playerName="opponent.name" :shipName="opponent.ship.name" class="col m-3"/>
         </div>
     </div>
 </template>
