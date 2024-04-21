@@ -44,7 +44,7 @@ describe('AccueilForm', () => {
         expect(wrapper.text()).toContain(ships[2].name);
     })
 
-    it("Doit emit .",async() => {
+    it("Doit emit @loading-error si l'api ne répond pas.",async() => {
         // Arrange
         apiServer.use(networkError[0])
 
@@ -53,7 +53,7 @@ describe('AccueilForm', () => {
         await flushPromises();
 
         // Assert
-        expect(wrapper.find('body')).toContain("Erreur")
+        expect(wrapper.emitted('loading-error')).toBeTruthy()
     })
 
 })

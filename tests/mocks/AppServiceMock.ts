@@ -11,7 +11,7 @@ export const getShips = [
 ]
 
 export const networkError = [
-  rest.get(`${API_URL}/*`, (req, res, ctx) => {
+  rest.get('http://localhost:3000/ships', (req, res, ctx) => {
     return res.networkError('Handler : Failed to connect')
   }),
 ]
