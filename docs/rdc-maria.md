@@ -16,3 +16,10 @@ Peut-être ajouter une fonction pour vérifier que le nom du joueur est valide a
 
 ### *AppService.ts*
 Très bonne idée, ça rend le code beaucoup plus lisible.
+
+## Semaine 2
+### Manque de tests :
+je pense qu'il est urgent de commencer nos tests, je vais m'en occuper.
+
+### L'interface du jeu est très propre, beau travail.
+### Code très propre, rien à signaler.
