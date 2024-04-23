@@ -41,6 +41,21 @@ const APP_SERVICE : AppService = new AppService();
 :::
 
 ## Semaine 2
+### Tests
+Cas de tests très pertinents. Je suis fan du Mock du AppService.
+```` ts
+export const getShips = [
+    rest.get('http://localhost:3000/ships', (req, res, ctx) => {
+        return res(ctx.status(200), ctx.json(ships))
+    }),
+]
+````
+#### Cas de tests
+::: info
+- Doit afficher un champ de texte pour le nom du joueur.
+- Doit afficher la liste des vaisseaux disponible.
+- Doit emit @loading-error si l'api ne répond pas.
+:::
 
 ## Semaine 3
 
