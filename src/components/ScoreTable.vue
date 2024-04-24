@@ -28,6 +28,7 @@ function sortScores(){
             }
         }
     }
+    // Pour que la première colonne affiche la position du joueur au lieu de son id.
     for (let i = 0; i<scoreInfos.length; i ++){
         scoreInfos[i]['id'] = i+1;
     }
