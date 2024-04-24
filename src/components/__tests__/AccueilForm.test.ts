@@ -27,9 +27,9 @@ describe('AccueilForm', () => {
 
     it('Doit afficher un champ de texte pour le nom du joueur.', () => {
         // Arrange - Act
-        const wrapper = mount(AccueilForm)
+        const wrapper = mount(AccueilForm);
         // Assert
-        expect(wrapper.find('input[type="text"]')).toBeTruthy()
+        expect(wrapper.find('input[type="text"]')).toBeTruthy();
     })
 
     it('Doit afficher la liste des vaisseaux disponible.', async() => {
@@ -53,7 +53,7 @@ describe('AccueilForm', () => {
         await flushPromises();
         await wrapper.vm.$nextTick()
         // Assert
-        expect(wrapper.findComponent(AccueilForm).emitted('loading-error')).toBeTruthy()
+        expect(wrapper.findComponent(AccueilForm).emitted('loading-error')).toBeTruthy();
     })
 })
 
