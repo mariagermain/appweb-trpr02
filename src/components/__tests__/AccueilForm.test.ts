@@ -51,9 +51,9 @@ describe('AccueilForm', () => {
         // Act
         const wrapper = mount(testComponent);
         await flushPromises();
-
+        await wrapper.vm.$nextTick()
         // Assert
-        expect(wrapper.emitted('loading-error')).toBeTruthy()
+        expect(wrapper.findComponent(AccueilForm).emitted('loading-error')).toBeTruthy()
     })
-
 })
+
