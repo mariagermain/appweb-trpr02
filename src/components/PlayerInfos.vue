@@ -10,20 +10,11 @@ const props = defineProps<{
 }>()
 const EXPERIENCES = ['Débutant', 'Confirmé.', 'Expert', 'Maitre'];
 let experience : string = EXPERIENCES[props.experience - 1]
+let initialLifePoint = props.vitality;
 
 
 function getProgressBarStyle(){
-    if(props.vitality < 0){
-        return"width: 0%;";
-    } else if (props.vitality > 0 && props.vitality <= 25){
-        return "width: 25%;";
-    } else if (props.vitality > 25 && props.vitality <= 50){
-        return "width: 50%;";
-    } else if (props.vitality > 50 && props.vitality <= 75){
-        return "width: 75%;";
-    } else {
-        return "width: 100%;";
-    }
+    return "width: "+ (props.vitality / initialLifePoint * 100) + "%;";
 }
 </script>
 
