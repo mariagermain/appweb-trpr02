@@ -23,3 +23,9 @@ export const getScores = [
   }),
 ]
 
+export const getCharacters = [
+  rest.get("http://127.0.0.1:3000/characters", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json([]));
+  }),
+]
+

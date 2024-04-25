@@ -67,6 +67,8 @@ describe('Routes', () => {
         routes : routes
     })
 
+
+    // TODO : A déplacer dans les tests de vue.ts
     it('Doit pouvoir naviguer sur la page de jeu.', async () => {
       // Arrange
       router.push('/') // S'assurer de commencer avec une route connue
