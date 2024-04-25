@@ -11,6 +11,7 @@ const props = defineProps<{
     shipName:string,
     randIndex:number
 }>()
+
 const currentMission = ref(1);
 
 const APP_SERVICE : AppService = new AppService();
@@ -42,11 +43,11 @@ function onClickRepair(){
     <div class="container w-100">
         <div class="row">
             <Actions class="col m-3" @attack="onClickAttack" @end-mission="onClickEndMission" @repair="onClickRepair"/>
-            <Missions class="col m-3"/>
+            <Missions class="col m-3" :currentMission="currentMission"/>
         </div>
         <div class="row">
-            <PlayerInfos :playerName="player.name" :shipName="shipName" :nbGalacticCredit="player.credit" :experience="player.ex" class="col m-3"/>
-            <PlayerInfos :playerName="opponent.name" :shipName="opponent.ship.name" class="col m-3"/>
+            <PlayerInfos :playerName="player.name" :shipName="shipName" :nbGalacticCredits="player.credit" :experience="player.experience" class="col m-3"/>
+            <PlayerInfos :playerName="opponent.name" :shipName="opponent.ship.name" :nbGalacticCredits="opponent.credit" :experience="opponent.experience" class="col m-3"/>
         </div>
     </div>
 </template>

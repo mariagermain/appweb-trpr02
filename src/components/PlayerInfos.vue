@@ -3,16 +3,20 @@ import { ref } from 'vue';
 
 const props = defineProps<{
     playerName: String,
-    shipName: String
+    shipName: String,
+    nbGalacticCredits: number,
+    experience : number
 }>()
+const EXPERIENCES = ['Débutant', 'Confirmé.', 'Expert', 'Maitre'];
+let experience : string = EXPERIENCES[props.experience - 1]
 
 </script>
 
 <template>
     <div class="container bg-dark text-white rounded border-2 border">
         <div class="p-2 bg-primary">{{ props.playerName }}</div>
-        <div class="row">
-
+        <div class="row p-2">
+            {{ experience }} - {{ $props.nbGalacticCredits }} CG
         </div>
         <div>
             {{ props.shipName }}
