@@ -11,11 +11,19 @@ const props = defineProps<{
     shipName:string,
     randIndex:number
 }>()
+const currentMission = ref(1);
 
 const APP_SERVICE : AppService = new AppService();
 
 let opponent = await APP_SERVICE.getCharacter(props.randIndex);
-let player : Player = {name:props.playerName, maxHealth:0, credit:0};
+let player : Character = {
+    id: 0, name: props.playerName, experience: 4, credit: 0,
+    ship: {
+        id: '0',
+        name: props.shipName,
+        vitality: 0
+    }
+};
 
 // Action du joueur :
 function onClickAttack(){
@@ -37,7 +45,7 @@ function onClickRepair(){
             <Missions class="col m-3"/>
         </div>
         <div class="row">
-            <PlayerInfos :playerName="player.name" :shipName="shipName" class="col m-3"/>
+            <PlayerInfos :playerName="player.name" :shipName="shipName" :nbGalacticCredit="player.credit" :experience="player.ex" class="col m-3"/>
             <PlayerInfos :playerName="opponent.name" :shipName="opponent.ship.name" class="col m-3"/>
         </div>
     </div>
