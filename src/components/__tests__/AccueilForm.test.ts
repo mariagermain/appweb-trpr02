@@ -9,6 +9,7 @@ import { defineComponent } from 'vue'
 import {ships} from '../../../tests/data/ships'
 import { createRouter, createWebHistory, useRouter } from 'vue-router'
 import routes from '@/router/routes'
+import router from '@/router'
 
 // Pour encadrer notre composent dans un <Suspense>
 const testComponent = defineComponent({
@@ -46,6 +47,32 @@ describe('AccueilForm', () => {
         expect(wrapper.text()).toContain(ships[2].name);
     })
 
+    it('Doit afficher une erreur si le champ name est vide lors du click sur le bouton.', async() => {
+      // Arrange
+      const wrapper = mount(testComponent)
+      await flushPromises();
+      const button = wrapper.findComponent(AccueilForm).find('button[type="button"]');
+
+      // Act
+      await button.trigger('click')
+
+      // Assert
+      expect(wrapper.text()).toContain('Le nom du joueur est obligatoire.');
+    })
+
+    it('Doit afficher une erreur si aucun ship est selectionné lors du click sur le bouton.', async() => {
+      // Arrange
+      const wrapper = mount(testComponent)
+      await flushPromises();
+      const button = wrapper.findComponent(AccueilForm).find('button[type="button"]');
+
+      // Act
+      await button.trigger('click')
+
+      // Assert
+      expect(wrapper.text()).toContain('Veuillez choisir un vaisseau.');
+    })
+
     it("Doit emit @loading-error si l'api ne répond pas.",async() => {
         // Arrange
         apiServer.use(networkError[0])
@@ -59,46 +86,3 @@ describe('AccueilForm', () => {
     })
 })
 
-
-describe('Routes', () => {
-
-    const router = createRouter({
-        history: createWebHistory(),
-        routes : routes
-    })
-
-
-    // TODO : A déplacer dans les tests de vue.ts
-    it('Doit pouvoir naviguer sur la page de jeu.', async () => {
-      // Arrange
-      router.push('/') // S'assurer de commencer avec une route connue
-      await router.isReady() // Attendre que le routeur soit prêt
-  
-      const wrapper = mount(testComponent);
-      await flushPromises();
-  
-      const routerSpy = vi.spyOn(router, 'push')
-  
-      // Act - Trouver le lien par son texte et simuler un clic
-      const linkPostsEl = wrapper.find('#startGame') // Adapter le sélecteur selon ton besoin
-      await linkPostsEl.trigger('click')
-  
-      // Assert
-      expect(routerSpy).toHaveBeenCalledWith('/')
-    })
-  
-    it('Doit pouvoir naviguer sur la page de scores.', async () => {
-      router.push('/') // Reset la route au début de chaque test
-      await router.isReady()
-  
-      const wrapper = mount(testComponent);
-      await flushPromises();
-  
-      const routerSpy = vi.spyOn(router, 'push')
-  
-      const linkAboutEl = wrapper.find('#scorePage') // Adapter le sélecteur selon ton besoin
-      await linkAboutEl.trigger('click')
-  
-      expect(routerSpy).toHaveBeenCalledWith({ name: 'About' })
-    })
-  })
