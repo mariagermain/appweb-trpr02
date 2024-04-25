@@ -70,6 +70,7 @@ function onClickAttack(){
     }
     console.log(player.value.ship.vitality)
 }
+
 function onClickEndMission(){
 
 }
