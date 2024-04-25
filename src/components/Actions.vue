@@ -10,14 +10,14 @@ function loadingError(){
 }
 
 function attack() {
-
+    emit('attack');
 }
 
 function endMission() {
-
+    emit('end-mission');
 }
 function repair() {
-
+    emit('repair');
 }
 
 </script>

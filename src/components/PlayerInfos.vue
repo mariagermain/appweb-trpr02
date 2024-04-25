@@ -10,21 +10,21 @@ const props = defineProps<{
 }>()
 const EXPERIENCES = ['Débutant', 'Confirmé.', 'Expert', 'Maitre'];
 let experience : string = EXPERIENCES[props.experience - 1]
-let progressBarStyle = ref("width: 100%;");
 
-if(props.vitality < 0){
-    progressBarStyle.value = "width: 0%;";
-} else if (props.vitality > 0 && props.vitality <= 25){
-    progressBarStyle.value = "width: 25%;";
-} else if (props.vitality > 25 && props.vitality <= 50){
-    progressBarStyle.value = "width: 50%;";
-} else if (props.vitality > 50 && props.vitality <= 75){
-    progressBarStyle.value = "width: 75%;";
-} else {
-    progressBarStyle.value = "width: 100%;";
+
+function getProgressBarStyle(){
+    if(props.vitality < 0){
+        return"width: 0%;";
+    } else if (props.vitality > 0 && props.vitality <= 25){
+        return "width: 25%;";
+    } else if (props.vitality > 25 && props.vitality <= 50){
+        return "width: 50%;";
+    } else if (props.vitality > 50 && props.vitality <= 75){
+        return "width: 75%;";
+    } else {
+        return "width: 100%;";
+    }
 }
-
-
 </script>
 
 <template>
@@ -37,9 +37,8 @@ if(props.vitality < 0){
             {{ props.shipName }}
         </div>
         <div class="progress m-1">
-            <div class="progress-bar" role="progressbar" :style="progressBarStyle" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{ $props.vitality}}</div>
+            <div class="progress-bar" role="progressbar" :style="getProgressBarStyle()" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{ $props.vitality}}</div>
         </div>
-    
     </div>
 </template>
 
