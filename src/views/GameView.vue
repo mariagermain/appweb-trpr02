@@ -17,12 +17,23 @@ const APP_SERVICE : AppService = new AppService();
 let opponent = await APP_SERVICE.getCharacter(props.randIndex);
 let player : Player = {name:props.playerName, maxHealth:0, credit:0};
 
+// Action du joueur :
+function onClickAttack(){
+
+}
+function onClickEndMission(){
+
+}
+function onClickRepair(){
+
+}
+
 </script>
 
 <template>
     <div class="container w-100">
         <div class="row">
-            <Actions class="col m-3"/>
+            <Actions class="col m-3" @attack="onClickAttack" @end-mission="onClickEndMission" @repair="onClickRepair"/>
             <Missions class="col m-3"/>
         </div>
         <div class="row">

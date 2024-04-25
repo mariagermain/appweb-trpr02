@@ -3,8 +3,21 @@ import { ref } from 'vue';
 
 let showLoadingError = ref(false);
 
+const emit = defineEmits(['attack', 'end-mission', 'repair'])
+
 function loadingError(){
     showLoadingError.value = true;
+}
+
+function attack() {
+
+}
+
+function endMission() {
+
+}
+function repair() {
+
 }
 
 </script>
@@ -13,9 +26,9 @@ function loadingError(){
     <div class="container bg-dark border border-2 rounded w-60">
         <div class="p-2 bg-primary text-white">Actions</div>
         <span class="col m-1">
-            <button type="button" class="btn btn-primary">Combattre</button>
-            <button type="button" class="btn btn-primary m-1">Terminer la mission</button>
-            <button type="button" class="btn btn-primary">Terminer la mission et reparer le vaisseau</button>
+            <button type="button" class="btn btn-primary" @click="attack()">Combattre</button>
+            <button type="button" class="btn btn-primary m-1" @click="endMission()">Terminer la mission</button>
+            <button type="button" class="btn btn-primary" @click="repair()">Terminer la mission et reparer le vaisseau</button>
         </span>
     </div>
 </template>
