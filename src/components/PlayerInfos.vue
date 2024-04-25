@@ -5,10 +5,25 @@ const props = defineProps<{
     playerName: String,
     shipName: String,
     nbGalacticCredits: number,
-    experience : number
+    experience : number,
+    vitality : number
 }>()
 const EXPERIENCES = ['Débutant', 'Confirmé.', 'Expert', 'Maitre'];
 let experience : string = EXPERIENCES[props.experience - 1]
+let progressBarStyle = ref("width: 100%;");
+
+if(props.vitality < 0){
+    progressBarStyle.value = "width: 0%;";
+} else if (props.vitality > 0 && props.vitality <= 25){
+    progressBarStyle.value = "width: 25%;";
+} else if (props.vitality > 25 && props.vitality <= 50){
+    progressBarStyle.value = "width: 50%;";
+} else if (props.vitality > 50 && props.vitality <= 75){
+    progressBarStyle.value = "width: 75%;";
+} else {
+    progressBarStyle.value = "width: 100%;";
+}
+
 
 </script>
 
@@ -21,11 +36,10 @@ let experience : string = EXPERIENCES[props.experience - 1]
         <div>
             {{ props.shipName }}
         </div>
-        <div class="w-100 border border-1 border-light mt-1 mb-1">
-            <div class="p-1">
-                    
-            </div>
+        <div class="progress m-1">
+            <div class="progress-bar" role="progressbar" :style="progressBarStyle" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{ $props.vitality}}</div>
         </div>
+    
     </div>
 </template>
 
