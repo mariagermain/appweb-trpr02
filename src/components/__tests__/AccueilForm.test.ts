@@ -73,7 +73,7 @@ describe('AccueilForm', () => {
       expect(wrapper.text()).toContain('Veuillez choisir un vaisseau.');
     })
 
-    it("Doit emit @loading-error si l'api ne répond pas.",async() => {
+    it("Doit emit @loading-error si l'api ne répond pas.", async() => {
         // Arrange
         apiServer.use(networkError[0])
 

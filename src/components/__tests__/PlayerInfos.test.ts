@@ -4,8 +4,8 @@ import PlayerInfos from '../PlayerInfos.vue'
 
 describe("PlayerInfos", () => {
 
-    const ANY_PLAYER_NAME = "Bob";
-    const ANY_SHIP_NAME = "SuperVaisseau";
+    const ANY_PLAYER_NAME : string = "Bob";
+    const ANY_SHIP_NAME : string = "SuperVaisseau";
 
     it("Doit afficher le nom du joueur.", () => {
         // Arrange - Act

@@ -67,6 +67,25 @@ async getScores() : Promise<ScoreInfo[]>{
 ````
 
 ## Semaine 3
+### Test
+::: info
+- Les cas de tests sont très significatif et complet!
+- Des tests à en plus finir! (jamais trop)
+:::
 
+Encore quelques oublis de types! mais l'utilisation reste très bien en général dans tout le code
+::: warning
+````ts
+    const ANY_PLAYER_NAME = "Bob";
+    const ANY_SHIP_NAME = "SuperVaisseau";
+````
+:::
+
+::: tip
+````ts
+    const ANY_PLAYER_NAME : string = "Bob";
+    const ANY_SHIP_NAME : string = "SuperVaisseau";
+````
+:::
 
 
