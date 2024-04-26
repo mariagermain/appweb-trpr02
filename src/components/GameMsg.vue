@@ -1,18 +1,22 @@
 <script setup lang="ts">
+import type { GameMsgParam } from '@/scripts/Types';
+import type { EnumMember, EnumType } from 'typescript';
 import { ref, type Ref } from 'vue';
+
 
 
     const emit = defineEmits(['close']);
 
-    let title:Ref<String> = ref("");
-    let text:Ref<String> = ref("");
+    let title:Ref<string> = ref("");
+    let text:Ref<string> = ref("");
+    let buttonText:Ref<string> = ref("");
     let visible:Ref<boolean> = ref(false);
 
-    function showMessage(newTitle:string, newText:string){
-        title.value = newTitle;
-        text.value = newText;
+    function showMessage(params:GameMsgParam){
+        title.value = params.title;
+        text.value = params.text;
+        buttonText.value = params.buttonText;
         visible.value = true;
-
     }
 
     defineExpose({
@@ -21,7 +25,7 @@ import { ref, type Ref } from 'vue';
 
     function onClickBtnClose(){
         visible.value = false;
-        emit("close");
+        emit('close');
     }
 </script>
 
@@ -29,7 +33,7 @@ import { ref, type Ref } from 'vue';
     <div v-if="visible" class="center">
         <h2 class="text-center">{{ title }}</h2>
         <p class="text-center">{{ text }}</p>
-        <button class="button btn-primary" @click="onClickBtnClose">OK !</button>
+        <button class="btn btn-primary center" @click="onClickBtnClose() ">{{ buttonText }}</button>
     </div>
 </template>
 
