@@ -1,3 +1,5 @@
+import type { EnumMember, EnumType } from "typescript"
+
 export type ScoreInfo = {
     id:number,
     name:string,
@@ -27,5 +29,11 @@ export type Character = {
     name:string,
     credit:number,
     experience:number,
-    ship:Ship
+    ship:Ship,
+} 
+
+export type GameMsgParam ={
+    title:string,
+    text:string,
+    buttonText:string
 }
