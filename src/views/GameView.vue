@@ -8,6 +8,8 @@ import AppService from '../../AppService';
 import GameMsg from '@/components/GameMsg.vue';
 import type { EnumType } from 'typescript';
 import router from '@/router';
+import { onBeforeRouteLeave, type RouteLocationNormalized } from 'vue-router';
+import ConfirmMsgBox from '@/components/confirmMsgBox.vue';
 
 const props = defineProps<{
     playerName:string,
@@ -37,8 +39,9 @@ let player : Ref<Character> = ref({
 });
 
 const GameMsgRef = ref();
+const quitConfirmRef = ref();
 
-enum  GameStatus {game, win, loose};
+enum  GameStatus {game, win, loose, paused};
 
 // pour savoir quoi faire quand la boite de dialog se ferme.
 enum ActionsAfterClose {NEXT_MISSION, GOTO_TITLE, GOTO_SCORE};
@@ -46,6 +49,8 @@ let actionAfterClose:ActionsAfterClose;
 
 // état de la partie :
 let gameStatus:GameStatus = GameStatus.game;
+let gameStatusBeforeQuitValidation:GameStatus;
+let canQuit:boolean = false; // Pour savoir si on a le droit de quitter.
 
 // Action du joueur :
 function onClickAttack(){
@@ -94,6 +99,7 @@ function onClickAttack(){
 }
 
 function onClickEndMission(){
+    if (gameStatus != GameStatus.game) return; 
     skipMission();
 }
 
@@ -113,7 +119,6 @@ function skipMission(){
 }
 
 function onClickRepair(){
-
     // cout : 5CG par % vie
     if (gameStatus != GameStatus.game) return;
     while(player.value.ship.vitality <100 && player.value.credit >= 5){
@@ -189,11 +194,12 @@ function onEmitClose(){
             break;
 
         case ActionsAfterClose.GOTO_TITLE :
+            canQuit = true;
             router.push({name:'home'});
             break;
 
         case ActionsAfterClose.GOTO_SCORE :
-            // TODO: Enregistrer le score
+            canQuit = true;
             APP_SERVICE.postScore(player.value.name, player.value.credit)
             router.push({name:'score'});
             break;
@@ -211,6 +217,32 @@ function findNewOpponent(){
     
 }
 
+// Message de confirmation en cas de changement de page :
+let nextPage:RouteLocationNormalized;
+onBeforeRouteLeave((to, from, next) => {
+
+    if (canQuit){
+        next()
+    }
+    else{
+        nextPage = to;
+        quitConfirmRef.value.showMessage("Attention", "Si vous quittez la partie, votre progression sera effacer, voulez vous vraiment quitter ?")
+        gameStatusBeforeQuitValidation = gameStatus;
+        gameStatus = GameStatus.paused;
+        next(false);
+    }
+   
+})
+
+function cancelQuit(){
+    gameStatus = gameStatusBeforeQuitValidation;
+    canQuit = false;
+}
+
+function validQuit(){
+    canQuit=true;
+    router.push(nextPage)
+}
 </script>
 
 <template>
@@ -224,7 +256,8 @@ function findNewOpponent(){
             <PlayerInfos :playerName="opponent.name" :shipName="opponent.ship.name" :nbGalacticCredits="opponent.credit" :experience="opponent.experience" :vitality="opponent.ship.vitality" class="col m-3"/>
         </div>
         <div class="row">
-            <GameMsg ref="GameMsgRef" :title="'title'" :text="'text'" :visible="true" @close="onEmitClose"/>
+            <GameMsg ref="GameMsgRef" @close="onEmitClose"/>
+            <ConfirmMsgBox ref="quitConfirmRef" @ok="validQuit()" @cancel="cancelQuit()"/>
         </div>
     </div>
 </template>
