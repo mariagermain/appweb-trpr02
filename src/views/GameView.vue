@@ -9,10 +9,6 @@ import GameMsg from '@/components/GameMsg.vue';
 import type { EnumType } from 'typescript';
 import router from '@/router';
 
-defineExpose({
-    attack
-})
-
 const props = defineProps<{
     playerName:string,
     shipName:string
