@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref, watch } from 'vue';
+
 
 const props = defineProps<{
     playerName: String,
@@ -10,8 +11,14 @@ const props = defineProps<{
 }>()
 const EXPERIENCES = ['Débutant', 'Confirmé.', 'Expert', 'Maitre'];
 let experience : string = EXPERIENCES[props.experience - 1]
+
 let initialLifePoint = props.vitality;
 
+
+// Quand le nom du joueur change, on actualise la vie max.
+watch(() => props.playerName, () => {
+      initialLifePoint = props.vitality;
+});
 
 function getProgressBarStyle(){
     return "width: "+ (props.vitality / initialLifePoint * 100) + "%;";
