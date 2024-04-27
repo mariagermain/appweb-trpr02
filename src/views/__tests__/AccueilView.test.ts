@@ -13,7 +13,7 @@ import type { Ship } from '@/scripts/Types';
 const router = createRouter({
     history: createWebHistory(),
     routes : routes
-  })
+})
 
 
 // Ici on est obligé de simuler l'api car sinon le formulaire ne charge pas.

@@ -1,5 +1,6 @@
 import { ships } from '../data/ships'
 import { ranking } from '../data/ranking'
+import { characters } from '../data/characters'
 import { rest } from 'msw'
 
 
@@ -25,7 +26,12 @@ export const getScores = [
 
 export const getCharacters = [
   rest.get("http://127.0.0.1:3000/characters", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json([]));
+    return res(ctx.status(200), ctx.json(characters));
   }),
 ]
 
+export const getCharacter = [
+  rest.get("http://127.0.0.1:3000/characters", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(characters[1]));
+  }),
+]
