@@ -30,11 +30,40 @@ import { ref, type Ref } from 'vue';
 </script>
 
 <template>
-    <div v-if="visible" class="center">
-        <h2 class="text-center">{{ title }}</h2>
-        <p class="text-center">{{ text }}</p>
-        <button class="btn btn-primary center" @click="onClickBtnClose() ">{{ buttonText }}</button>
+    <div class="background" v-if="visible">
+        <div class="window">
+            <h2 class="text-center">{{ title }}</h2>
+            <p class="text-center">{{ text }}</p>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary center" @click="onClickBtnClose() ">{{ buttonText }}</button>
+            </div>
+        </div>
     </div>
 </template>
 
-<style></style>
+<style scoped>
+    .background{
+        position: absolute;
+        top:0%;
+        left:0%;
+        background-color: rgba(0, 0, 0, 0.75);
+        height: 100%;
+    }
+    .window{
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+
+        border:2px solid black;
+        border-radius:10px;
+        background-color: white;
+        padding:10px;
+        min-width: 50%;
+    }
+
+    button{
+        margin:10px;
+    }
+</style>
