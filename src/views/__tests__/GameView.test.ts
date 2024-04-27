@@ -11,7 +11,7 @@ const ANY_SHIP_NAME : string = "SuperVaisseau";
 
 const testComponent = defineComponent({
     components: { GameView, props:{playerName:ANY_PLAYER_NAME, shipName:ANY_SHIP_NAME, randIndex:1}},
-    template : '<Suspense><GameView playerName="player" shipName="ship"/></Suspense>'
+    template : '<Suspense><GameView playerName="player" shipName="ship"/></Suspense>' // Les props sont passés ici
 })
 
 const apiServer = setupServer(...getCharacters);
