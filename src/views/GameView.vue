@@ -89,15 +89,15 @@ function onClickAttack(){
     }
 
     // issue du combat.
-    if (isPlayerWin()){
-            console.log("VICTOIRE DU JOUEUR")
-        }
-        else if (isOpponentWin()){
-            console.log("PERDU")
-        }
+    if (isPlayerWin()) return;
+    if (isOpponentWin()) return;
 }
 
 function onClickEndMission(){
+    skipMission();
+}
+
+function skipMission(){
     if (currentMission.value == 5) 
     {
         GameMsgRef.value.showMessage({  title:"VICTOIRE !", 
@@ -111,8 +111,16 @@ function onClickEndMission(){
                                         buttonText: "Au suivant !"});
     actionAfterClose = ActionsAfterClose.NEXT_MISSION;
 }
+
 function onClickRepair(){
 
+    // cout : 5CG par % vie
+    if (gameStatus != GameStatus.game) return;
+    while(player.value.ship.vitality <100 && player.value.credit >= 5){
+        player.value.ship.vitality ++;
+        player.value.credit -= 5;
+    }
+    skipMission();
 }
 
 function attack(probability : number, characterToAttack : Character){

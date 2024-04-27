@@ -13,7 +13,7 @@ const routes: Array<RouteRecordRaw> = [
       component: () => import('../views/ScoreView.vue')
     },
     {
-      path: '/game/:playerName&:shipName&:randIndex',
+      path: '/game/:playerName&:shipName',
       name: 'game',
       component: () => import('../views/GameView.vue'),
       props: true
