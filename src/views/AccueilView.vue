@@ -16,8 +16,7 @@ function loadingError(){
 }
 
 async function submitForm(playerName : string, ship : Ship){
-    let rand : number = Math.floor(Math.random() * await APP_SERVICE.getNbCharacters());
-    ROUTER.push({ name : 'game', params : {playerName:playerName, shipName:ship.name, randIndex:rand}});
+    ROUTER.push({ name : 'game', params : {playerName:playerName, shipName:ship.name}});
 }
 
 </script>
