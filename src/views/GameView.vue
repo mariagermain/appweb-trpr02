@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { onMounted, onUpdated, ref, type Ref } from 'vue';
+import { ref, type Ref } from 'vue';
 import Actions from '../components/Actions.vue'
 import Missions from '../components/Missions.vue'
 import PlayerInfos from '../components/PlayerInfos.vue'
 import type { Player, Character } from '@/scripts/Types';
 import AppService from '../../AppService';
 import GameMsg from '@/components/GameMsg.vue';
-import type { EnumType } from 'typescript';
 import router from '@/router';
 import { onBeforeRouteLeave, type RouteLocationNormalized } from 'vue-router';
 import ConfirmMsgBox from '@/components/confirmMsgBox.vue';
@@ -93,7 +92,7 @@ function skipMission(message:string){
     if (currentMission.value == 5) 
     {
         GameMsgRef.value.showMessage({  title:"VICTOIRE !", 
-                                        text:"Vous avez vancu tous les enemies et vous avez gagné "+ player.value.credit + " CG !",
+                                        text:"Vous avez vaincu tous les ennemis et vous avez gagné "+ player.value.credit + " CG !",
                                         buttonText: "Voir le tableau des pointages"});
         actionAfterClose = ActionsAfterClose.GOTO_SCORE;
         return;
@@ -138,7 +137,7 @@ function isPlayerWin(){
     if (currentMission.value == 5) 
     {
         GameMsgRef.value.showMessage({  title:"VICTOIRE !", 
-                                        text:"Vous avez vancu tous les enemies et vous avez gagné "+ player.value.credit + " CG !",
+                                        text:"Vous avez vaincu tous les ennemis et vous avez gagné "+ player.value.credit + " CG !",
                                         buttonText: "Voir le tableau des pointages"});
         actionAfterClose = ActionsAfterClose.GOTO_SCORE;
     }
@@ -218,7 +217,7 @@ onBeforeRouteLeave((to, from, next) => {
             next(false);
             return
         }
-        quitConfirmRef.value.showMessage("Attention", "Si vous quittez la partie, votre progression sera effacer, voulez vous vraiment quitter ?")
+        quitConfirmRef.value.showMessage("Attention", "Si vous quittez la partie, votre progression sera effacée, voulez vous vraiment quitter ?")
         gameStatusBeforeQuitValidation = gameStatus;
         gameStatus = GameStatus.paused;
         next(false);

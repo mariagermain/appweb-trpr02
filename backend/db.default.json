@@ -66,9 +66,25 @@
       "score": 55
     },
     {
+<<<<<<< HEAD
       "id": "3baf",
       "name": "hugo",
       "score": 0
+=======
+      "id": "4ae3",
+      "name": "dfre",
+      "score": 0
+    },
+    {
+      "id": "6ead",
+      "name": "dfre",
+      "score": 0
+    },
+    {
+      "id": "8d79",
+      "name": "sCAa",
+      "score": 160
+>>>>>>> 2b6f10cf6bba580beac03b5c723b0c5f52510d75
     }
   ],
   "ships": [
