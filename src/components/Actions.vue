@@ -27,8 +27,8 @@ function repair() {
         <div class="p-2 bg-primary text-white">Actions</div>
         <span class="col m-1">
             <button type="button" class="btn btn-primary" id="attack" @click="attack()">Combattre</button>
-            <button type="button" class="btn btn-primary m-1" @click="endMission()">Terminer la mission</button>
-            <button type="button" class="btn btn-primary" @click="repair()">Terminer la mission et reparer le vaisseau</button>
+            <button type="button" class="btn btn-primary m-1" id="end-mission" @click="endMission()">Terminer la mission</button>
+            <button type="button" class="btn btn-primary" id="repair-end-mission" @click="repair()">Terminer la mission et reparer le vaisseau</button>
         </span>
     </div>
 </template>

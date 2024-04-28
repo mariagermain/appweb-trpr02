@@ -23,9 +23,6 @@ const APP_SERVICE : AppService = new AppService();
 const OPPONENT_LIST = await APP_SERVICE.getCharacters();
 
 
-//let opponent = ref(await APP_SERVICE.getCharacter(props.randIndex));
-//opponent.value.ship.vitality = 100;
-
 let opponent:Ref<Character> = ref(OPPONENT_LIST[0]);
 findNewOpponent();
 
@@ -214,7 +211,7 @@ function findNewOpponent(){
         validOpponent = newOpponent.ship.vitality > 0;
     }         
     opponent.value = newOpponent;
-    
+    opponent.value.ship.vitality = 100;
 }
 
 // Message de confirmation en cas de changement de page :
