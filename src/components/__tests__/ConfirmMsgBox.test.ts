@@ -14,4 +14,5 @@ describe('ConfirmMsgBox', () => {
         expect(wrapper.text()).toContain("title");
         expect(wrapper.text()).toContain("message");
     })
+    
 })
