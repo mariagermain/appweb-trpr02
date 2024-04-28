@@ -136,20 +136,23 @@ describe('GameView', () => {
         await flushPromises();
         const endMission = wrapper.findComponent(Actions).find('#end-mission')
         
+        // Act
         endMission.trigger('click')
         await flushPromises();
+
         // Assert
         expect(wrapper.findComponent(GameMsg).text()).toContain("MISSION TERMINÉ");
         expect(wrapper.findComponent(GameMsg).text()).toContain("Vous avez terminé la mission, mais vous ne recevez pas de CG.");
     })
 
     it ("Quand le joueur gagne une mission, un message apparait pour lui indiquer le nombre de crédit gagné (ceux de l'adversaire)", async () => {
-        // Arrange - Act
+        // Arrange 
         apiServer.use(getEasyCharacters[0]); // Pour obtenir des enemies facile à tuer (1 pt de vie) et avec 1000 CG. 
         const wrapper = mount(testComponent);
         await flushPromises();
         const buttonAttack = wrapper.findComponent(Actions).find('#attack')
         
+        // Act
         while(wrapper.findComponent(GameMsg).text() == ''){ // on attaque jusqu'a recevoir un message de fin (où l'ennemi est mort)
             buttonAttack.trigger('click') 
         }
@@ -161,11 +164,13 @@ describe('GameView', () => {
     })
 
     it ("Quand le joueur meurt, un message apparait pour lui indiquer qu'il a perdu", async () => {
+        // Arrange 
         apiServer.use(getInvincibleCharacters[0]); // Pour obtenir un ennemi avec beaucoup de points de vie (999999999)
         const wrapper = mount(testComponent);
         await flushPromises();
         const buttonAttack = wrapper.findComponent(Actions).find('#attack')
         
+        // Act
         while(wrapper.findComponent(GameMsg).text() == ''){ // on attaque jusqu'a recevoir un message de fin (où le player est mort)
             buttonAttack.trigger('click') 
         }
@@ -177,19 +182,19 @@ describe('GameView', () => {
     })
 
     it ("Quand le joueur répare son vaisseau, le vaisseau est réparé", async () => {
+        // Arrange
         apiServer.use(getEasyCharacters[0]); // Pour obtenir des ennemis facile à tuer (1 pt de vie) et avec 1000 CG. 
         const wrapper = mount(testComponent);
         await flushPromises();
-        const buttonAttack = wrapper.findComponent(Actions).find('#repair-end-mission')
+        const buttonRepair = wrapper.findComponent(Actions).find('#repair-end-mission')
         
-        while(wrapper.findComponent(GameMsg).text() == ''){ // on attaque jusqu'a recevoir un message de fin (où le player est mort)
-            buttonAttack.trigger('click') 
-        }
+        // Act
+        buttonRepair.trigger('click') 
         await flushPromises();
 
         // Assert
-        expect(wrapper.findComponent(GameMsg).text()).toContain("PERDU !");
-        expect(wrapper.findComponent(GameMsg).text()).toContain("Vous êtes mort.");
+        expect(wrapper.findComponent(GameMsg).text()).toContain("MISSION TERMINÉ");
+        expect(wrapper.findComponent(GameMsg).text()).toContain("Vous avez terminé la mission, mais vous ne recevez pas de CG.");
     })
 
 })
