@@ -38,7 +38,6 @@ describe('AccueilForm', () => {
         // Act
         await button.trigger('click') 
 
-
         // Assert
         expect(wrapper.findComponent(AccueilForm).emitted('submit-form')).toBeTruthy();
     })
