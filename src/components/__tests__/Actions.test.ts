@@ -20,7 +20,7 @@ describe ('Action', () => {
         wrapper.find('#attack').trigger('click')
 
         // Assert
-        expect(wrapper.findComponent(Action).emitted('attack'));
+        expect(wrapper.findComponent(Action).emitted('attack')).toBeTruthy();
     })
     it('Doit emit repair lorsque le bouton est clické', () => {
         // Arrange 
@@ -30,7 +30,7 @@ describe ('Action', () => {
         wrapper.find('#repair-end-mission').trigger('click')
 
         // Assert
-        expect(wrapper.findComponent(Action).emitted('repair-end-mission'));
+        expect(wrapper.findComponent(Action).emitted('repair')).toBeTruthy();
     })
     it('Doit emit end-mission lorsque le bouton est clické', () => {
         // Arrange 
@@ -40,6 +40,6 @@ describe ('Action', () => {
         wrapper.find('#end-mission').trigger('click')
 
         // Assert
-        expect(wrapper.findComponent(Action).emitted('end-mission'));
+        expect(wrapper.findComponent(Action).emitted('end-mission')).toBeTruthy();
     })
 })

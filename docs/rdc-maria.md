@@ -36,6 +36,7 @@ Si on passe l'index de l'enemie dans l'url, le joueur peut tricher et choisir so
 Je pense que la meilleur solution est de choisir l'url dans GameView.
 
 ## Semaine 3
+::: warning
 ````ts
     switch(player.value.experience){
         case 1: {
@@ -55,4 +56,33 @@ Je pense que la meilleur solution est de choisir l'url dans GameView.
             break;
         }
 ````
+:::
+
+::: tip
+````ts
+attack (70, opponent.value)
+````
+:::
 comme tous les joueurs sont maitre (récit 6), pas besoin de se casser la tête. ce sera toujours une attaque à 70%.
+
+### N'oublie pas *await* devant les actions du wrapper, sinon ça ne fonctionne pas.
+````ts
+await wrapper.findComponent(AccueilForm).find('select').setValue(ANY_SHIP)
+````
+
+### Sinon les tests qu tu a écrit fonctionnent bien, excellent travail.
+
+:::: info
+### Pour le test 'Doit emit submit-form si le formulaire est bien rempli.', le teste ne fonctionnait pas car le nom de vaisseau que tu donne ne fait pas partie des options.
+
+::: warning
+````ts
+const ANY_SHIP = "ship";
+````
+:::
+::: tip
+````ts
+const ANY_SHIP = ships[0]; // ships est la liste de vaisseau que retourne le mock de l'api. donc ships[0] est forcément une option valide.
+````
+:::
+::::
