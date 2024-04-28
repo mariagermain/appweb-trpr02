@@ -3,11 +3,9 @@ import { ref, type Ref } from 'vue';
 import AccueilForm from '../components/AccueilForm.vue'
 import ErrorMsg from '../components/ErrorMsg.vue'
 import { useRouter, type Router } from 'vue-router';
-import type { Character, Ship } from '@/scripts/Types';
-import AppService from '../../AppService';
+import type { Ship } from '@/scripts/Types';
 
 let ROUTER : Router = useRouter();
-const APP_SERVICE : AppService = new AppService();
 
 let showLoadingError = ref(false);
 

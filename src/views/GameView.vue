@@ -8,7 +8,7 @@ import AppService from '../../AppService';
 import GameMsg from '@/components/GameMsg.vue';
 import router from '@/router';
 import { onBeforeRouteLeave, type RouteLocationNormalized } from 'vue-router';
-import ConfirmMsgBox from '@/components/confirmMsgBox.vue';
+import ConfirmMsgBox from '@/components/ConfirmMsgBox.vue';
 
 const props = defineProps<{
     playerName:string,

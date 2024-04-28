@@ -7,11 +7,8 @@ import { getShips, networkError } from '../../../tests/mocks/AppServiceMock'
 import { afterEach } from 'node:test'
 import { defineComponent } from 'vue'
 import {ships} from '../../../tests/data/ships'
-import { createRouter, createWebHistory, useRouter } from 'vue-router'
-import routes from '@/router/routes'
-import router from '@/router'
 
-// Pour encadrer notre composent dans un <Suspense>
+// Pour encadrer notre composant dans un <Suspense>
 const testComponent = defineComponent({
     components: { AccueilForm },
     template : '<Suspense><AccueilForm/></Suspense>'
@@ -40,6 +37,7 @@ describe('AccueilForm', () => {
 
         // Act
         await button.trigger('click') 
+        await wrapper.vm.$nextTick()
         await flushPromises();
 
         // Assert

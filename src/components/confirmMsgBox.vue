@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import type { GameMsgParam } from '@/scripts/Types';
-import type { EnumMember, EnumType } from 'typescript';
 import { ref, type Ref } from 'vue';
-
-
 
 const emit = defineEmits(['ok', 'cancel']);
 defineExpose({

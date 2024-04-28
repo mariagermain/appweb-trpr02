@@ -37,5 +37,24 @@ describe('AccueilView', () => {
         expect(wrapper.findComponent(AccueilForm).isVisible()).toBeTruthy();
         expect(wrapper.findComponent(AccueilForm).exists()).toBeTruthy();
     });
-    
+
+    it("Doit rediriger vers le jeu lorsque le formulaire est envoyé", async() => {
+        // Arrange
+        const routerSpy = vi.spyOn(router, 'push');
+
+        const wrapper = mount(AccueilView, {
+            global: {
+                plugins: [router]
+            }
+        });
+        await flushPromises()
+
+        // Act
+        wrapper.findComponent(AccueilForm).vm.$emit('submit-form', "playerName", {id:"id", name:"shipName", vitality:"vitality"})
+        await wrapper.vm.$nextTick()
+
+        // Assert
+        expect(routerSpy).toHaveBeenCalledWith({name: "game", params:{playerName:"playerName", shipName:"shipName"}})
+    });
+
 });

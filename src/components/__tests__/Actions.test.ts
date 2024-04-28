@@ -12,6 +12,34 @@ describe ('Action', () => {
         expect(wrapper.findAll('button').length).toBe(3);
     })
 
-    // TODO : Suite des tests quand les bouttons serons fonctionnels.
+    it('Doit emit attack lorsque le bouton est clické', () => {
+        // Arrange 
+        const wrapper = mount(Action);
 
+        // Act
+        wrapper.find('#attack').trigger('click')
+
+        // Assert
+        expect(wrapper.findComponent(Action).emitted('attack'));
+    })
+    it('Doit emit repair lorsque le bouton est clické', () => {
+        // Arrange 
+        const wrapper = mount(Action);
+
+        // Act
+        wrapper.find('#repair-end-mission').trigger('click')
+
+        // Assert
+        expect(wrapper.findComponent(Action).emitted('repair-end-mission'));
+    })
+    it('Doit emit end-mission lorsque le bouton est clické', () => {
+        // Arrange 
+        const wrapper = mount(Action);
+
+        // Act
+        wrapper.find('#end-mission').trigger('click')
+
+        // Assert
+        expect(wrapper.findComponent(Action).emitted('end-mission'));
+    })
 })

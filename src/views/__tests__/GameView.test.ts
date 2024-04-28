@@ -150,7 +150,6 @@ describe('GameView', () => {
         apiServer.use(getEasyCharacters[0]); // Pour obtenir des enemies facile à tuer (1 pt de vie) et avec 1000 CG. 
         const wrapper = mount(testComponent);
         await flushPromises();
-        const buttonAttack = wrapper.findComponent(Actions).find('#attack')
         
         // Act
         while(wrapper.findComponent(GameMsg).text() == ''){ // on attaque jusqu'a recevoir un message de fin (où l'ennemi est mort)
