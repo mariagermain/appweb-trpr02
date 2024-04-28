@@ -30,9 +30,9 @@ export const easyCharacters = [
 
 export const invincibleCharacters = [
 
-    {id: 0, name: "BigBoss", experience: 4, credit: 100, ship: {
+    {id: 0, name: "BigBoss", experience: 5, credit: 100, ship: {
         id: '0',
         name: "Invincibilator",
-        vitality: 9999999999
+        vitality: 9007199254740991
     }},
 ]

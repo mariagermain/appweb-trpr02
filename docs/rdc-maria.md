@@ -34,3 +34,25 @@ const props = defineProps<{
 ````
 Si on passe l'index de l'enemie dans l'url, le joueur peut tricher et choisir son enemie en modifiant l'url.
 Je pense que la meilleur solution est de choisir l'url dans GameView.
+
+## Semaine 3
+````ts
+    switch(player.value.experience){
+        case 1: {
+            attack(20, opponent.value)
+            break;
+        }
+        case 2: {
+            attack(35, opponent.value)
+            break;
+        }
+        case 3: {
+            attack(50, opponent.value)
+            break;
+        }
+        case 4: {
+            attack(70, opponent.value)
+            break;
+        }
+````
+comme tous les joueurs sont maitre (récit 6), pas besoin de se casser la tête. ce sera toujours une attaque à 70%.

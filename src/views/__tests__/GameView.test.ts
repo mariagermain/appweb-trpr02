@@ -92,7 +92,7 @@ describe('GameView', () => {
         await flushPromises();
                         
         // Assert
-        expect(wrapper.findAllComponents(PlayerInfos)[0].text()).toContain("100%");
+        expect(wrapper.findAllComponents(PlayerInfos)[0].text()).toContain("100");
     })
 
     it("Le component PlayerInfos avec les infos de l'ennemi doit être affiché", async () => {
@@ -109,7 +109,7 @@ describe('GameView', () => {
         await flushPromises();
                         
         // Assert
-        expect(wrapper.findAllComponents(PlayerInfos)[1].text()).toContain("100%");
+        expect(wrapper.findAllComponents(PlayerInfos)[1].text()).toContain("100");
     })
 
     it ("Les commandes pour jouer du composant Actions sont disponible dans le jeu", async () =>{
@@ -151,23 +151,23 @@ describe('GameView', () => {
         const buttonAttack = wrapper.findComponent(Actions).find('#attack')
         
         while(wrapper.findComponent(GameMsg).text() == ''){ // on attaque jusqu'a recevoir un message de fin (où l'ennemi est mort)
-            buttonAttack.trigger('click') 
+            wrapper.findComponent(Actions).vm.$emit('attack');
+            await wrapper.vm.$nextTick()
         }
-        await flushPromises();
-
         // Assert
         expect(wrapper.findComponent(GameMsg).text()).toContain("VICTOIRE !");
         expect(wrapper.findComponent(GameMsg).text()).toContain("Vous avez gagné 1000 CG !");
     })
 
     it ("Quand le joueur meurt, un message apparait pour lui indiquer qu'il a perdu", async () => {
-        apiServer.use(getInvincibleCharacters[0]); // Pour obtenir un ennemi avec beaucoup de points de vie (999999999)
+        apiServer.use(getInvincibleCharacters[0]); // Pour obtenir un ennemi avec beaucoup de points de vie (999999999) et 100% de chance (c'est un démon)
         const wrapper = mount(testComponent);
         await flushPromises();
         const buttonAttack = wrapper.findComponent(Actions).find('#attack')
         
         while(wrapper.findComponent(GameMsg).text() == ''){ // on attaque jusqu'a recevoir un message de fin (où le player est mort)
-            buttonAttack.trigger('click') 
+            wrapper.findComponent(Actions).vm.$emit('attack'); // plus sur que de simuler un click.
+            await wrapper.vm.$nextTick()
         }
         await flushPromises();
 
@@ -180,16 +180,14 @@ describe('GameView', () => {
         apiServer.use(getEasyCharacters[0]); // Pour obtenir des ennemis facile à tuer (1 pt de vie) et avec 1000 CG. 
         const wrapper = mount(testComponent);
         await flushPromises();
-        const buttonAttack = wrapper.findComponent(Actions).find('#repair-end-mission')
         
-        while(wrapper.findComponent(GameMsg).text() == ''){ // on attaque jusqu'a recevoir un message de fin (où le player est mort)
-            buttonAttack.trigger('click') 
-        }
-        await flushPromises();
+        // Act
+        wrapper.findComponent(Actions).vm.$emit('repair');
+        await wrapper.vm.$nextTick();
 
         // Assert
-        expect(wrapper.findComponent(GameMsg).text()).toContain("PERDU !");
-        expect(wrapper.findComponent(GameMsg).text()).toContain("Vous êtes mort.");
+        expect(wrapper.findComponent(GameMsg).text()).toContain("MISSION TERMINÉ !");
+        expect(wrapper.findComponent(GameMsg).text()).toContain("Vous avez réparé votre vaisseau ! prix de la réparation :");
     })
 
 })

@@ -52,25 +52,10 @@ let canQuit:boolean = false; // Pour savoir si on a le droit de quitter.
 // Action du joueur :
 function onClickAttack(){
     if (gameStatus != GameStatus.game) return; 
-    switch(player.value.experience){
-        case 1: {
-            attack(20, opponent.value)
-            break;
-        }
-        case 2: {
-            attack(35, opponent.value)
-            break;
-        }
-        case 3: {
-            attack(50, opponent.value)
-            break;
-        }
-        case 4: {
-            attack(70, opponent.value)
-            break;
-        }
-    
-    }
+
+    // Attaque du joueur
+    attack(70, opponent.value)
+
     switch(opponent.value.experience){
         case 1: {
             attack(20, player.value)
@@ -88,6 +73,10 @@ function onClickAttack(){
             attack(70, player.value)
             break;
         }
+        case 5:{ // Nouveau niveau: 5 "Démon" pour les ennemis vraiment chanceux. 
+            attack(100, player.value)
+            break;
+        }
     }
 
     // issue du combat.
@@ -97,10 +86,10 @@ function onClickAttack(){
 
 function onClickEndMission(){
     if (gameStatus != GameStatus.game) return; 
-    skipMission();
+    skipMission("Vous avez terminé la mission, mais vous ne recevez pas de CG.");
 }
 
-function skipMission(){
+function skipMission(message:string){
     if (currentMission.value == 5) 
     {
         GameMsgRef.value.showMessage({  title:"VICTOIRE !", 
@@ -110,23 +99,25 @@ function skipMission(){
         return;
     }
     GameMsgRef.value.showMessage({  title:"MISSION TERMINÉ !", 
-                                        text:"Vous avez terminé la mission, mais vous ne recevez pas de CG.",
+                                        text:message,
                                         buttonText: "Au suivant !"});
     actionAfterClose = ActionsAfterClose.NEXT_MISSION;
 }
 
 function onClickRepair(){
     // cout : 5CG par % vie
+    let repairCost = 0 ;
     if (gameStatus != GameStatus.game) return;
     while(player.value.ship.vitality <100 && player.value.credit >= 5){
         player.value.ship.vitality ++;
         player.value.credit -= 5;
+        repairCost += 5;
     }
-    skipMission();
+    skipMission("Vous avez réparé votre vaisseau ! prix de la réparation : "+repairCost+ " CG.");
 }
 
 function attack(probability : number, characterToAttack : Character){
-    if(Math.random() * 100 < probability){
+    if(Math.random() * 100 <= probability){
         characterToAttack.ship.vitality -= Math.floor((Math.random() * 3) + 3);
     }
 }
@@ -223,6 +214,10 @@ onBeforeRouteLeave((to, from, next) => {
     }
     else{
         nextPage = to;
+        if (gameStatus == GameStatus.paused){
+            next(false);
+            return
+        }
         quitConfirmRef.value.showMessage("Attention", "Si vous quittez la partie, votre progression sera effacer, voulez vous vraiment quitter ?")
         gameStatusBeforeQuitValidation = gameStatus;
         gameStatus = GameStatus.paused;
