@@ -28,6 +28,24 @@ afterEach(() => {
 
 describe('AccueilForm', () => {
 
+    it('Doit emit submit-form si le formulaire est bien rempli.', async () => {
+        // Arrange
+        const ANY_USERNAME = "username";
+        const ANY_SHIP = "ship";
+        const wrapper = mount(testComponent)
+        await flushPromises();
+        wrapper.find('input[type="text"]').setValue(ANY_USERNAME) //on met une valeur dans le input du username
+        wrapper.find('select').setValue(ANY_SHIP) // on force une valeur de ship au select
+        const button = wrapper.findComponent(AccueilForm).find('button[type="button"]');
+
+        // Act
+        await button.trigger('click') 
+        await flushPromises();
+
+        // Assert
+        expect(wrapper.findComponent(AccueilForm).emitted('submit-form')).toBeTruthy();
+    })
+
     it('Doit afficher un champ de texte pour le nom du joueur.', () => {
         // Arrange - Act
         const wrapper = mount(AccueilForm);
@@ -49,10 +67,11 @@ describe('AccueilForm', () => {
 
     it('Doit afficher une erreur si le champ name est vide lors du click sur le bouton.', async() => {
       // Arrange
+      const ANY_SHIP = "ship";
       const wrapper = mount(testComponent)
       await flushPromises();
+      wrapper.find('select').setValue(ANY_SHIP) // on force une valeur de ship au select
       const button = wrapper.findComponent(AccueilForm).find('button[type="button"]');
-
       // Act
       await button.trigger('click')
 
@@ -62,8 +81,10 @@ describe('AccueilForm', () => {
 
     it('Doit afficher une erreur si aucun ship est selectionné lors du click sur le bouton.', async() => {
       // Arrange
+      const ANY_USERNAME = "username";
       const wrapper = mount(testComponent)
       await flushPromises();
+      wrapper.find('input[type="text"]').setValue(ANY_USERNAME) //on met une valeur dans le input du username
       const button = wrapper.findComponent(AccueilForm).find('button[type="button"]');
 
       // Act
@@ -71,6 +92,20 @@ describe('AccueilForm', () => {
 
       // Assert
       expect(wrapper.text()).toContain('Veuillez choisir un vaisseau.');
+    })
+
+    it('Doit afficher les erreurs si aucun username est entré et aucun ship est selectionné lors du click sur le bouton.', async() => {
+        // Arrange
+        const wrapper = mount(testComponent)
+        await flushPromises();
+        const button = wrapper.findComponent(AccueilForm).find('button[type="button"]');
+  
+        // Act
+        await button.trigger('click')
+  
+        // Assert
+        expect(wrapper.text()).toContain('Le nom du joueur est obligatoire.');
+        expect(wrapper.text()).toContain('Veuillez choisir un vaisseau.');
     })
 
     it("Doit emit @loading-error si l'api ne répond pas.", async() => {

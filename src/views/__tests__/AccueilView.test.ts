@@ -34,6 +34,8 @@ describe('AccueilView', () => {
         const wrapper = mount(AccueilView);
         await flushPromises()
         // Assert
+        expect(wrapper.findComponent(AccueilForm).isVisible()).toBeTruthy();
         expect(wrapper.findComponent(AccueilForm).exists()).toBeTruthy();
     });
+    
 });

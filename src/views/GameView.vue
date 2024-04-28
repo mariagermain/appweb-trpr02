@@ -204,13 +204,12 @@ function onEmitClose(){
 
 function findNewOpponent(){      
     let validOpponent = false;
-    let newOpponent:Character = OPPONENT_LIST[0];
+    let newOpponent : Character = OPPONENT_LIST[0];
     while (!validOpponent){
         newOpponent = OPPONENT_LIST[Math.trunc(Math.random() * OPPONENT_LIST.length)]; 
         validOpponent = newOpponent.ship.vitality > 0;
     }         
     opponent.value = newOpponent;
-    opponent.value.ship.vitality = 100;
 }
 
 // Message de confirmation en cas de changement de page :

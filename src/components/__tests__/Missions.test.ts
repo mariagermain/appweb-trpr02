@@ -17,7 +17,7 @@ describe("Missions", () => {
         // Arrange - Act
         const testComponent = defineComponent({
             components: { Missions, props:{currentMission:1}},
-            template : '<Missions currentMission="1"/>' // Les props sont passés ici
+            template : '<Missions currentMission="1" />' // Les props sont passés ici
         })
         const wrapper = mount(testComponent);
         await flushPromises();
