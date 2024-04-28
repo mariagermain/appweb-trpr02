@@ -38,4 +38,8 @@ export default class AppService {
         const { data } : AxiosResponse<Character[], Character[]> = await axios.get("http://127.0.0.1:3000/characters");
         return data.length
     }
+
+    async postScore(playerName:string, score:number){
+        await axios.post("http://127.0.0.1:3000/ranking", {name:playerName, score:score});
+    }
 }

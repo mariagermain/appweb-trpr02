@@ -57,7 +57,35 @@ export const getShips = [
 - Doit emit @loading-error si l'api ne répond pas.
 :::
 
-## Semaine 3
+### AppService
+Belle utilisation de la classe AppService pour avoir la liste des scores.
+````ts
+async getScores() : Promise<ScoreInfo[]>{
+    const { data } : AxiosResponse<ScoreInfo[], ScoreInfo[]> = await axios.get(this.API_URL + SCORES_PATH);
+    return data;
+}
+````
 
+## Semaine 3
+### Test
+::: info
+- Les cas de tests sont très significatif et complet!
+- Des tests à en plus finir! (jamais trop)
+:::
+
+Encore quelques oublis de types! mais l'utilisation reste très bien en général dans tout le code
+::: warning
+````ts
+    const ANY_PLAYER_NAME = "Bob";
+    const ANY_SHIP_NAME = "SuperVaisseau";
+````
+:::
+
+::: tip
+````ts
+    const ANY_PLAYER_NAME : string = "Bob";
+    const ANY_SHIP_NAME : string = "SuperVaisseau";
+````
+:::
 
 

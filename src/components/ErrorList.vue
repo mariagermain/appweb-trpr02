@@ -2,7 +2,7 @@
 
 <script setup lang="ts">
 
-const PROPS = defineProps({
+defineProps({
     title:{type:String, required:true},
     errors:{type:Array<string>, required:true}
 })
