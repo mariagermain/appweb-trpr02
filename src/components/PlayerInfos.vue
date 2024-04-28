@@ -9,7 +9,7 @@ const props = defineProps<{
     experience : number,
     vitality : number
 }>()
-const EXPERIENCES = ['Débutant', 'Confirmé.', 'Expert', 'Maitre'];
+const EXPERIENCES = ['Débutant', 'Confirmé.', 'Expert', 'Maitre', 'Démon'];
 let experience : string = EXPERIENCES[props.experience - 1]
 
 let initialLifePoint = props.vitality;
@@ -35,7 +35,7 @@ function getProgressBarStyle(){
             {{ props.shipName }}
         </div>
         <div class="progress m-1">
-            <div class="progress-bar" role="progressbar" :style="getProgressBarStyle()" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{ $props.vitality}}</div>
+            <div class="progress-bar" role="progressbar" :style="getProgressBarStyle()" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{ $props.vitality }}</div>
         </div>
     </div>
 </template>
